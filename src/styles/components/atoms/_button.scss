@@ -1,0 +1,125 @@
+@import '../../base/base_dir';
+
+.kc-button {
+  border: none;
+  border-radius: 4px;
+  height: 40px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+
+  &.kc-button--fluid {
+    width: 100%;
+  }
+
+  &.kc-button--short {
+    width: 180px;
+  }
+
+  &.kc-button--long {
+    width: 400px;
+  }
+
+  &.kc-button--fit-content {
+    padding: 0 20px;
+    width: fit-content;
+  }
+
+  &.kc-button--primary {
+    color: $neutral1;
+    background-color: $primary7;
+
+    &:hover {
+      background-color: $primary6;
+    }
+
+    &:active {
+      background-color: $primary8;
+    }
+  }
+
+  &.kc-button--secondary {
+    color: $neutral8;
+    border: 1px solid $neutral7;
+
+    &:hover {
+      color: $primary6;
+      border: 1px solid $primary6;
+    }
+
+    &:active {
+      color: $primary8;
+      border: 1px solid $primary8;
+    }
+  }
+
+  &.kc-button--success {
+    color: $neutral1;
+    background-color: $functionalSuccess500;
+
+    &:hover {
+      background-color: $functionalSuccess400;
+    }
+
+    &:active {
+      background-color: $functionalSuccess600;
+    }
+  }
+
+  &.kc-button--danger {
+    color: $neutral1;
+    background-color: $functionalError500;
+
+    &:hover {
+      background-color: $functionalError400;
+    }
+
+    &:active {
+      background-color: $functionalError600;
+    }
+  }
+
+  &.kc-button--primary, &.kc-button--secondary, &.kc-button--success, &.kc-button--danger {
+    &:disabled {
+      background-color: $neutral3;
+      border: 1px solid $neutral5;
+      color: $neutral6;
+    }
+  }
+
+  .kc-button--content {
+    width: 100%;
+    
+    .kc-button--icon {
+      margin-right: 10px;
+    }
+    
+    @-webkit-keyframes spinner-border {
+      to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+    
+    @keyframes spinner-border {
+      to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+    
+    .spinner-border {
+      display: inline-block;
+      width: 1.2rem;
+      height: 1.2rem;
+      vertical-align: -0.125em;
+      border: 0.25em solid currentColor;
+      border-right-color: transparent;
+      border-radius: 50%;
+      -webkit-animation: .75s linear infinite spinner-border;
+      animation: .75s linear infinite spinner-border;
+    }
+  }
+}
