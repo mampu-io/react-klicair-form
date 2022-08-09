@@ -1,7 +1,12 @@
 {
   "name": "react-klicair-form",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "repository": "https://github.com/klikcair/react-klicair-form.git",
   "author": "KlikCair",
   "license": "MIT",

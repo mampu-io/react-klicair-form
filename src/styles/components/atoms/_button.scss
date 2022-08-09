@@ -89,10 +89,13 @@
     }
   }
 
-  .kc-button--content {
+  .kc-button__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     
-    .kc-button--icon {
+    .kc-button__icon {
       margin-right: 10px;
     }
     

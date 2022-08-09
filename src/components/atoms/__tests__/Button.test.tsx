@@ -48,7 +48,6 @@ describe('Button component', () => {
     userEvent.click(button);
 
     expect(button).toBeDisabled();
-    expect(button).toHaveClass('kc-button kc-button--loading');
     expect(onClickMock).toBeCalledTimes(0);
     expect(spinner).toBeDefined();
   });
@@ -64,7 +63,7 @@ describe('Button component', () => {
   test('When create button with icon', () => {
     render(<Button label="Login" withIcon iconName="fas fa-add" />);
     const button = screen.getByRole('button');
-    const buttonIcon = button.querySelector('.kc-button--icon');
+    const buttonIcon = button.querySelector('.kc-button__icon i');
 
     expect(buttonIcon).toBeDefined();
     expect(buttonIcon).toHaveClass('fas fa-add');

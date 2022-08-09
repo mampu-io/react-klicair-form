@@ -1,7 +1,7 @@
 import React, { useState, useEffect, InputHTMLAttributes } from 'react';
 import '../../styles/components/atoms/_input_field.scss';
 
-export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+export type InputFieldProps = {
   placeholder: string,
   width?: 'fixed' | 'fluid';
   _prefix?: string,
@@ -11,7 +11,7 @@ export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   subtitle?: string;
   disabled?: boolean;
   isError?: boolean;
-}
+} & InputHTMLAttributes<HTMLInputElement>
 
 export default function InputField({
   placeholder,
@@ -28,15 +28,16 @@ export default function InputField({
 }: InputFieldProps) {
   const [seePassword, setSeePassword] = useState(false);
   const [types, setTypes] = useState(type);
-  const textFieldSize = `kc-textfield--field--${_size}`;
-  const textFieldDisable = disabled ? ' kc-textfield--disabled' : ' ';
-  const textFieldError = !disabled && isError ? ' kc-textfield--error' : ' ';
-  const textFieldWidth = `kc-textfield--${width}`;
+  const inputFieldSize = `kc-inputfield--${_size}`;
+  const inputFieldDisable = disabled ? 'kc-inputfield--disabled' : '';
+  const inputFieldError = !disabled && isError ? 'kc-inputfield--error' : '';
+  const inputFieldWidth = `kc-inputfield--${width}`;
+  const inputFieldVariant = [inputFieldSize, inputFieldDisable, inputFieldError, inputFieldWidth].join(' ');
 
   const showTogglePassword = () => (
     !seePassword ? (
       <button
-        className="kc-textfield--toggle-password"
+        className="kc-inputfield__toggle-password"
         type="button"
         disabled={disabled}
         onClick={() => setSeePassword(!seePassword)}
@@ -45,7 +46,7 @@ export default function InputField({
       </button>
     ) : (
       <button
-        className="kc-textfield--toggle-password"
+        className="kc-inputfield__toggle-password"
         type="button"
         disabled={disabled}
         onClick={() => setSeePassword(!seePassword)}
@@ -56,7 +57,11 @@ export default function InputField({
   );
 
   const showSuffix = () => (
-    suffix ? <div className="kc-textfield--suffix"><span className="kc-body2">{suffix}</span></div> : null
+    suffix ? (
+      <div className="kc-inputfield__suffix">
+        <span className="kc-body2">{suffix}</span>
+      </div>
+    ) : null
   );
 
   useEffect(() => {
@@ -66,16 +71,22 @@ export default function InputField({
   }, [seePassword, type]);
 
   return (
-    <div className={`kc-textfield ${textFieldWidth}${textFieldDisable}${textFieldError}`}>
+    <div className={`kc-inputfield ${inputFieldVariant}`}>
       {
         title ? (
-          <div className="kc-textfield--title">
+          <div className="kc-inputfield__title">
             <span className="kc-caption">{title}</span>
           </div>
         ) : null
       }
-      <div className={`kc-textfield--field ${textFieldSize}`}>
-        {_prefix ? <div className="kc-textfield--prefix"><span className="kc-body2">{_prefix}</span></div> : null}
+      <div className="kc-inputfield__box">
+        {
+          _prefix ? (
+            <div className="kc-inputfield__prefix">
+              <span className="kc-body2">{_prefix}</span>
+            </div>
+          ) : null
+        }
         <input
           placeholder={placeholder}
           disabled={disabled}
@@ -86,7 +97,7 @@ export default function InputField({
       </div>
       {
         subtitle ? (
-          <div className="kc-textfield--subtitle">
+          <div className="kc-inputfield__subtitle">
             <span className="kc-overline">{subtitle}</span>
           </div>
         ) : null

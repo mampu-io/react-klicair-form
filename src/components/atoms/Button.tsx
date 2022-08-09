@@ -27,23 +27,28 @@ export default function Button({
   iconName,
   ...nativeProps
 }: ButtonProps) {
-  const btnType = `kc-button--${model}`;
+  const btnModel = `kc-button--${model}`;
   const btnSize = `kc-button--${size}`;
-  const btnLoading = loading ? 'kc-button--loading' : '';
 
   return (
     <button
       type="button"
-      className={`kc-button ${btnSize} ${btnType} ${btnLoading}`}
+      className={`kc-button ${btnSize} ${btnModel}`}
       disabled={disabled || loading}
       {...nativeProps}
     >
-      <div className="kc-button--content">
+      <div className="kc-button__content">
         {
           loading ? <span className="spinner-border" />
             : (
               <>
-                { withIcon ? <i className={`kc-button--icon ${iconName}`} /> : null }
+                {
+                  withIcon ? (
+                    <div className="kc-button__icon">
+                      <i className={iconName} />
+                    </div>
+                  ) : null
+                }
                 <span className="kc-button-label">{label}</span>
               </>
             )

@@ -75,3 +75,9 @@ Password.args = {
   title: 'Password',
   type: 'password',
 };
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  ...Password.args,
+  disabled: true,
+};
