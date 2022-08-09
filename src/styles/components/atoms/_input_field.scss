@@ -1,0 +1,140 @@
+@import '../../base/base_dir';
+
+.kc-textfield {
+  display: flex;
+  flex-direction: column;
+
+  &.kc-textfield--fixed {
+    width: 216px;
+  }
+
+  &.kc-textfield--fluid {
+    width: 100%;
+  }
+
+  &.kc-textfield--error {
+    .kc-textfield--field, .kc-textfield--field:focus-within {
+      border: 1px solid $functionalError500;
+      box-shadow: 0px 0px 0px 2px rgba(181, 36, 53, 0.2);
+    }
+  }
+
+  .kc-textfield--title {
+    color: $neutral13;
+    margin-bottom: 4px;
+  }
+
+  .kc-textfield--field {
+    background-color: $neutral1;
+    border: 1px solid $neutral5;
+    border-radius: 2px;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+
+    &:focus-within {
+      border: 1px solid $functionalLink500;
+      box-shadow: 0px 0px 0px 2px rgba(24, 144, 255, 0.2);
+    }
+
+    &.kc-textfield--field--small {
+      height: 24px;
+      padding: 3px 12px;
+    }
+
+    &.kc-textfield--field--medium {
+      height: 32px;
+      padding: 7px 12px;
+    }
+
+    &.kc-textfield--field--small, &.kc-textfield--field--medium {
+      input {
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 18px;
+        letter-spacing: 0.25px;
+      }
+    }
+
+    &.kc-textfield--field--large {
+      height: 42px;
+      padding: 11px 12px;
+
+      input {
+        font-weight: 400;
+        font-size: 17px;
+        line-height: 20px;
+        letter-spacing: 0.5px;
+      }
+    }
+
+    .kc-textfield--prefix {
+      color: $neutral7;
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      margin-right: 4px;
+    }
+
+    input {
+      background-color: $neutral1;
+      border: none;
+      color: $neutral9;
+      padding: 0;
+      width: 100%;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:disabled {
+        background-color: $neutral3;
+        color: $neutral6;
+      }
+
+      &:-webkit-autofill {transition: background-color 5000s}
+
+      &::placeholder {
+        color: $neutral6;
+      }
+    }
+
+    .kc-textfield--suffix {
+      color: $neutral7;
+      margin-left: 4px;
+    }
+
+    button.kc-textfield--toggle-password {
+      color: $neutral9;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      padding: 0;
+      margin-left: 8px;
+    }
+  }
+
+  .kc-textfield--subtitle {
+    color: $neutral8;
+    margin-top: 4px;
+  }
+
+  &.kc-textfield--disabled {
+    .kc-textfield--field {
+      background-color: $neutral3;
+
+      .kc-textfield--prefix, .kc-textfield--suffix {
+        color: $neutral6;
+      }
+    }
+
+    .kc-textfield--title {
+      color: $neutral8;
+    }
+
+    button.kc-textfield--toggle-password {
+      color: $neutral6;
+      cursor: default;
+    }
+  }
+}
