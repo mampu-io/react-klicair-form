@@ -1,6 +1,6 @@
 import React from 'react';
-import Label from './Label';
-import '../../styles/components/atoms/_form_group.scss';
+import Label from '../atoms/Label';
+import '../../styles/components/molecules/_form_group.scss';
 
 export type FormGroupProps = {
   label: string,

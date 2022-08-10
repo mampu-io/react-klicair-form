@@ -1,11 +1,11 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import FormWrapper, { FormWrapperProps } from '../../components/atoms/FormWrapper';
-import FormGroup from '../../components/atoms/FormGroup';
+import FormWrapper, { FormWrapperProps } from '../../components/organisms/FormWrapper';
+import FormGroup from '../../components/molecules/FormGroup';
 import InputField from '../../components/atoms/InputField';
 
 export default {
-  title: 'Components/Atoms/FormWrapper',
+  title: 'Components/Organisms/FormWrapper',
   component: FormWrapper,
   argTypes: {
     backgroundColor: { control: 'color' },

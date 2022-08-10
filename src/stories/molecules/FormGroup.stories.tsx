@@ -1,10 +1,10 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import FormGroup, { FormGroupProps } from '../../components/atoms/FormGroup';
+import FormGroup, { FormGroupProps } from '../../components/molecules/FormGroup';
 import InputField from '../../components/atoms/InputField';
 
 export default {
-  title: 'Components/Atoms/FormGroup',
+  title: 'Components/Molecules/FormGroup',
   component: FormGroup,
   argTypes: {
     backgroundColor: { control: 'color' },
