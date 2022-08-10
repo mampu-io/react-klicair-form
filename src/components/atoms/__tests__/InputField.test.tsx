@@ -4,7 +4,7 @@ import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
 import InputField from '../InputField';
 
-describe('Button component', () => {
+describe('InputField component', () => {
   /**
    * Test Cases:
    * - With default props, should render normal-state input field with
