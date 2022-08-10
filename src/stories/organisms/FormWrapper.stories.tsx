@@ -21,10 +21,7 @@ const Template: Story<FormWrapperProps> = (args) => (
 
 export const Vertical = Template.bind({});
 Vertical.args = {
-  onSubmitHandler: (e: MouseEvent) => {
-    e.preventDefault();
-    console.log('submit form');
-  },
+  onSubmitHandler: () => console.log('submit form'),
   children: (
     <>
       <FormGroup label="Nama Sesuai Identitas" direction="vertical">

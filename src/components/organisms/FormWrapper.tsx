@@ -11,13 +11,19 @@ export type FormWrapperProps = {
 export default function FormWrapper({
   onSubmitHandler,
   children,
-  submitLabel = 'Submit',
+  submitLabel,
 }: FormWrapperProps) {
   return (
-    <form className="kc-form-wrapper" onSubmit={() => onSubmitHandler()}>
+    <form
+      className="kc-form-wrapper"
+      onSubmit={(e) => {
+        e.preventDefault();
+        onSubmitHandler();
+      }}
+    >
       {children}
       <div className="kc-form-wrapper__submit-btn">
-        <Button label={submitLabel} type="submit" />
+        <Button label={String(submitLabel)} type="submit" />
       </div>
     </form>
   );
