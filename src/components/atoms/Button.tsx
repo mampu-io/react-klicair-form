@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import React, { ButtonHTMLAttributes } from 'react';
 import '../../styles/components/atoms/_button.scss';
 
@@ -25,6 +26,7 @@ export default function Button({
   loading,
   withIcon,
   iconName,
+  type,
   ...nativeProps
 }: ButtonProps) {
   const btnModel = `kc-button--${model}`;
@@ -32,7 +34,7 @@ export default function Button({
 
   return (
     <button
-      type="button"
+      type={type || 'button'}
       className={`kc-button ${btnSize} ${btnModel}`}
       disabled={disabled || loading}
       {...nativeProps}

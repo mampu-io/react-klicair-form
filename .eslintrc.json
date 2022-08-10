@@ -41,7 +41,8 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "react/jsx-props-no-spreading": "off",
     "react/function-component-definition" : "off",
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "no-console": "off"
   },
   "settings": {
       "import/extension": [".js", ".jsx", ".ts", ".tsx"],

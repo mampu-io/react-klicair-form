@@ -1,0 +1,31 @@
+.kc-form-group {
+  display: flex;
+  margin-bottom: 20px;
+  width: 100%;
+
+  .kc-inputfield {
+    max-width: 500px;
+  }
+
+  &.kc-form-group--horizontal {
+    .kc-form-group__label {
+      margin: 0;
+      margin-right: 30px;
+      width: 300px;
+
+      label {
+        line-height: 24px;
+      }
+    }
+  }
+
+  &.kc-form-group--vertical {
+    flex-direction: column;
+
+    .kc-form-group__label {
+      margin: 0;
+      margin-bottom: 10px;
+      max-width: 500px;
+    }
+  }
+}
