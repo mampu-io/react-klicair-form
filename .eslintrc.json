@@ -42,7 +42,8 @@
     "react/jsx-props-no-spreading": "off",
     "react/function-component-definition" : "off",
     "import/no-extraneous-dependencies": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "no-unused-vars": "off"
   },
   "settings": {
       "import/extension": [".js", ".jsx", ".ts", ".tsx"],
