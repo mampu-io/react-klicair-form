@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useActionOnClickOutside } from '../../custom-hooks';
 import '../../styles/components/atoms/_dropdown.scss';
 
 export type DropdownItem<T extends string> = {
@@ -37,6 +38,9 @@ export default function Dropdown<T extends string>({
   const dropdownDisabled = disabled ? 'kc-dropdown--disabled' : '';
   const dropdownVariant = [dropdownWidth, dropdownClose, dropdownDisabled].join(' ');
 
+  const dropdownRef = useRef(null);
+  useActionOnClickOutside(dropdownRef, () => setIsDropdownOpen(false));
+
   useEffect(() => {
     setDropdownCurrentValue(currentValue);
   }, [currentValue]);
@@ -63,7 +67,7 @@ export default function Dropdown<T extends string>({
   );
 
   return (
-    <div className={`kc-dropdown ${dropdownVariant}`}>
+    <div ref={dropdownRef} className={`kc-dropdown ${dropdownVariant}`}>
       <button
         type="button"
         className="kc-dropdown-button kc-button-label"

@@ -15,6 +15,9 @@ describe('Dropdown component', () => {
    *   and dropdown items should not appear
    * - When the dropdown is not in disabled state, it should be able to click
    *   and dropdown items should appear
+   * - When dropdown is clicked twice, dropdown items should not appear
+   * - When dropdown is opened and we click element outside from the dropdown,
+   *   dropdown items should not appear
    * - When one of the dropdown items is selected, the current value should
    *   be updated
    */
@@ -94,6 +97,32 @@ describe('Dropdown component', () => {
       const dropdownItemLabel = dropdownItem.querySelector('button span.kc-body2');
       expect(dropdownItemLabel?.textContent).toEqual(dropdownValues[i].label);
     });
+  });
+
+  test(`When dropdown is clicked twice, dropdown items should
+    not appear`, async () => {
+    render(<Dropdown {...globalProps} />);
+    const button = screen.getAllByRole('button')[0];
+    await userEvent.click(button);
+    await userEvent.click(button);
+    expect(button.parentElement).toHaveClass('kc-dropdown--close');
+  });
+
+  test(`When dropdown is opened and we click element outside from the dropdown,
+    dropdown items should not appear`, async () => {
+    const dropdownContainerStyle = {
+      width: 300, height: 200, display: 'flex', justifyContent: 'center',
+    };
+    render(
+      <div className="dropdown-container" style={dropdownContainerStyle}>
+        <Dropdown {...globalProps} />
+      </div>,
+    );
+    const dropdownContainer = document.querySelector('.dropdown-container') as HTMLElement;
+    const button = screen.getAllByRole('button')[0];
+    await userEvent.click(button);
+    await userEvent.click(dropdownContainer);
+    expect(button.parentElement).toHaveClass('kc-dropdown--close');
   });
 
   test(`When one of the dropdown items is selected, the current value should

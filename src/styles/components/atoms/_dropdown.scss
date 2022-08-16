@@ -23,6 +23,12 @@
       align-items: center;
       justify-content: space-between;
 
+      span.kc-button-label {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
       .kc-dropdown-button__icon i {
         margin-left: 20px;
         color: $neutral9;
