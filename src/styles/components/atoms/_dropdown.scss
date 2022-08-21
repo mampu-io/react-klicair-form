@@ -95,6 +95,8 @@
     background-color: $neutral3;
     
     > button {
+      cursor: default;
+
       .kc-dropdown-button__content {
         color: $neutral6;
 
