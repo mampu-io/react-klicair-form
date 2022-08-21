@@ -16,12 +16,15 @@ type DropdownCurrentValueProps<T extends string> = {
   defaultLabel?: string;
 }
 
-export type DropdownProps<T extends string> = {
+type DropdownGenericProps<T extends string> = {
   values: DropdownItem<T>[];
   onChangeHandler: (value: T) => void;
   width?: 'fixed' | 'fluid';
   disabled?: boolean;
-} & DropdownCurrentValueProps<T>
+};
+
+export type DropdownProps<T extends string> =
+  DropdownGenericProps<T> & DropdownCurrentValueProps<T>
 
 export default function Dropdown<T extends string>({
   values,
