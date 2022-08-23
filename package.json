@@ -1,6 +1,6 @@
 {
   "name": "react-klicair-form",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -21,7 +21,7 @@
     "prebuild": "rm -rf dist",
     "build": "yarn prebuild && rollup -c",
     "build:watch": "yarn prebuild && rollup -c -w",
-    "prepublishOnly": "yarn build build",
+    "prepublishOnly": "yarn build",
     "ar-login": "npx google-artifactregistry-auth --repo-config=./.npmrc"
   },
   "peerDependencies": {
