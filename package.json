@@ -5,7 +5,9 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "package.json",
+    "Readme.md"
   ],
   "repository": "https://github.com/klikcair/react-klicair-form.git",
   "author": "KlikCair",
@@ -16,8 +18,11 @@
     "lint": "eslint src/**/*.tsx",
     "storybook": "start-storybook -p 6006",
     "build:storybook": "build-storybook",
-    "build": "rollup -c",
-    "prepublishOnly": "npm run build"
+    "prebuild": "rm -rf dist",
+    "build": "yarn prebuild && rollup -c",
+    "build:watch": "yarn prebuild && rollup -c -w",
+    "prepublishOnly": "yarn build build",
+    "ar-login": "npx google-artifactregistry-auth --repo-config=./.npmrc"
   },
   "peerDependencies": {
     "react": "^18.2.0",
