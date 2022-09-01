@@ -21,7 +21,7 @@
     "prebuild": "rm -rf dist",
     "build": "yarn prebuild && rollup -c",
     "build:watch": "yarn prebuild && rollup -c -w",
-    "prepublishOnly": "yarn build",
+    "prepublishOnly": "yarn test && yarn lint && yarn build",
     "ar-login": "npx google-artifactregistry-auth ./.npmrc"
   },
   "peerDependencies": {
