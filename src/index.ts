@@ -1,6 +1,8 @@
 // Atoms
 export { default as Button } from './components/atoms/Button';
 export * from './components/atoms/Button';
+export { default as Checkbox } from './components/atoms/Checkbox';
+export * from './components/atoms/Checkbox';
 export { default as Dropdown } from './components/atoms/Dropdown';
 export * from './components/atoms/Dropdown';
 export { default as InputField } from './components/atoms/InputField';

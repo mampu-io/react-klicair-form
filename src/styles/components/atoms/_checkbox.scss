@@ -1,0 +1,39 @@
+@import '../../base/base_dir';
+
+.kc-checkbox-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  input[type=checkbox] {
+    accent-color: $primary7;
+    border-color: $neutral2;
+    height: 16px;
+    margin: 0;
+    margin-right: 8px;
+    width: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  input[type=checkbox]:indeterminate::before {
+    color: $primary7;
+  }
+
+  label {
+    margin: 0;
+    max-width: 192px;
+  }
+
+  &.kc-checkbox--disabled {
+    label {
+      color: $neutral6;
+    }
+
+    input[type=checkbox]:indeterminate::before {
+      color: $neutral6;
+    }
+  }
+}
