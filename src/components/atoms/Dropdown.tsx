@@ -10,17 +10,18 @@ export type DropdownItem<T extends string> = {
 
 type DropdownCurrentValueProps<T extends string> = {
   defaultLabel: string;
-  currentValue?: DropdownItem<T>;
+  currentValue?: T;
 } | {
-  currentValue: DropdownItem<T>;
+  currentValue: T;
   defaultLabel?: string;
-}
+};
 
 type DropdownGenericProps<T extends string> = {
   values: DropdownItem<T>[];
   onChangeHandler: (value: T) => void;
   width?: 'fixed' | 'fluid';
   disabled?: boolean;
+  position?: 'top' | 'bottom';
 };
 
 export type DropdownProps<T extends string> =
@@ -33,20 +34,40 @@ export default function Dropdown<T extends string>({
   defaultLabel,
   width,
   disabled,
+  position,
 }: DropdownProps<T>) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [dropdownCurrentValue, setDropdownCurrentValue] = useState<DropdownItem<T>>();
+  const [dropdownLabel, setDropdownLabel] = useState(defaultLabel);
   const dropdownWidth = `kc-dropdown--${width}`;
   const dropdownClose = isDropdownOpen ? '' : 'kc-dropdown--close';
   const dropdownDisabled = disabled ? 'kc-dropdown--disabled' : '';
-  const dropdownVariant = [dropdownWidth, dropdownClose, dropdownDisabled].join(' ');
+  const dropdownPosition = `kc-dropdown--${position}`;
+  const dropdownVariant = [dropdownWidth, dropdownClose, dropdownDisabled, dropdownPosition].join(' ');
 
   const dropdownRef = useRef(null);
   useActionOnClickOutside(dropdownRef, () => setIsDropdownOpen(false));
 
   useEffect(() => {
-    setDropdownCurrentValue(currentValue);
-  }, [currentValue]);
+    if (values.length === 0) {
+      setDropdownLabel(defaultLabel);
+      setDropdownCurrentValue(undefined);
+    }
+  }, [values, defaultLabel]);
+
+  useEffect(() => {
+    if (!currentValue) {
+      setDropdownLabel(defaultLabel);
+    }
+    const target = values.find((each) => each.value === currentValue);
+    if (!target) return;
+    setDropdownCurrentValue(target);
+  }, [values, currentValue, defaultLabel]);
+
+  useEffect(() => {
+    if (!dropdownCurrentValue) return;
+    setDropdownLabel(dropdownCurrentValue.label);
+  }, [dropdownCurrentValue, defaultLabel]);
 
   const onDropdownItemClick = (dropdownItem: DropdownItem<T>) => {
     onChangeHandler(dropdownItem.value);
@@ -54,17 +75,25 @@ export default function Dropdown<T extends string>({
     setDropdownCurrentValue(dropdownItem);
   };
 
+  const renderDropdownButtonIcon = () => {
+    if (position === 'bottom') {
+      return isDropdownOpen
+        ? <i className="fas fa-angle-up" />
+        : <i className="fas fa-angle-down" />;
+    }
+
+    return isDropdownOpen
+      ? <i className="fas fa-angle-down" />
+      : <i className="fas fa-angle-up" />;
+  };
+
   const renderDropdownButtonContent = () => (
     <div className="kc-dropdown-button__content">
       <span className="kc-button-label">
-        {dropdownCurrentValue ? dropdownCurrentValue.label : defaultLabel}
+        {dropdownLabel}
       </span>
       <div className="kc-dropdown-button__icon">
-        {
-          isDropdownOpen
-            ? <i className="fas fa-angle-up" />
-            : <i className="fas fa-angle-down" />
-        }
+        {renderDropdownButtonIcon()}
       </div>
     </div>
   );
@@ -97,4 +126,5 @@ export default function Dropdown<T extends string>({
 Dropdown.defaultProps = {
   width: 'fixed',
   disabled: false,
+  position: 'bottom',
 };

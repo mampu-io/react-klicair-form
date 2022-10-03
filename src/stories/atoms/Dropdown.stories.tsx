@@ -15,6 +15,7 @@ const TemplateStyle = {
   width: 300,
   display: 'flex',
   justifyContent: 'center',
+  alignItems: 'center',
 };
 
 const Template: Story<DropdownProps<string>> = (args) => (
@@ -46,7 +47,7 @@ const GenericProps = {
 export const WithCurrentValue = Template.bind({});
 WithCurrentValue.args = {
   ...GenericProps,
-  currentValue: dropdownItems[0],
+  currentValue: dropdownItems[0].value,
 };
 
 export const WithDefaultLabel = Template.bind({});
