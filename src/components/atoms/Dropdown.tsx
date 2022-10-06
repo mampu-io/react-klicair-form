@@ -49,13 +49,6 @@ export default function Dropdown<T extends string>({
   useActionOnClickOutside(dropdownRef, () => setIsDropdownOpen(false));
 
   useEffect(() => {
-    if (values.length === 0) {
-      setDropdownLabel(defaultLabel);
-      setDropdownCurrentValue(undefined);
-    }
-  }, [values, defaultLabel]);
-
-  useEffect(() => {
     if (!currentValue) {
       setDropdownLabel(defaultLabel);
     }
@@ -67,7 +60,7 @@ export default function Dropdown<T extends string>({
   useEffect(() => {
     if (!dropdownCurrentValue) return;
     setDropdownLabel(dropdownCurrentValue.label);
-  }, [dropdownCurrentValue, defaultLabel]);
+  }, [dropdownCurrentValue]);
 
   const onDropdownItemClick = (dropdownItem: DropdownItem<T>) => {
     onChangeHandler(dropdownItem.value);
