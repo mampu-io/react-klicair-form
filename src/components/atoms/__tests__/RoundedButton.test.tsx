@@ -12,6 +12,8 @@ describe('RoundedButton component', () => {
    * - When button in disabled state, should not be able to click
    * - When model and size prop is defined
    * - When button is clicked, onClick handler should be called
+   * - With tooltipLabel is set, should display tooltip whenever rounded button
+   *   is hover
    */
   const onClickMock = jest.fn();
   const globalProps = {
@@ -59,5 +61,15 @@ describe('RoundedButton component', () => {
     await userEvent.click(button);
 
     expect(onClickMock.mock.calls).toHaveLength(1);
+  });
+
+  test(`With tooltipLabel is set, should display tooltip whenever rounded button
+    is hover`, async () => {
+    const tooltipLabel = 'this is tooltip';
+    render(<RoundedButton {...globalProps} tooltipLabel={tooltipLabel} />);
+    const button = screen.getByRole('button');
+    const buttonTooltip = button.querySelector('.kc-rounded-button__tooltip') as HTMLElement;
+    expect(buttonTooltip).toBeDefined();
+    expect(buttonTooltip.textContent).toEqual(tooltipLabel);
   });
 });

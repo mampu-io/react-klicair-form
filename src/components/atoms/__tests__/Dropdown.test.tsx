@@ -20,6 +20,7 @@ describe('Dropdown component', () => {
    *   dropdown items should not appear
    * - When one of the dropdown items is selected, the current value should
    *   be updated
+   * - When dropdown position is set, should render indicator icon properly
    */
   const onChangeHandlerMock = jest.fn();
 
@@ -49,7 +50,7 @@ describe('Dropdown component', () => {
 
   test(`With current value props is set, should render dropdown that have
     current value`, () => {
-    render(<Dropdown {...globalProps} currentValue={dropdownValues[0]} />);
+    render(<Dropdown {...globalProps} currentValue={dropdownValues[0].value} />);
     const button = screen.getAllByRole('button')[0];
     expect(button).toBeDefined();
     expect(button.parentElement).toHaveClass('kc-dropdown kc-dropdown--fixed kc-dropdown--close');
@@ -140,5 +141,16 @@ describe('Dropdown component', () => {
     expect(onChangeHandlerMock).toHaveBeenCalledTimes(1);
     expect(buttonLabel?.textContent).toEqual(dropdownValues[0].label);
     expect(button.parentElement).toHaveClass('kc-dropdown--close');
+  });
+
+  test(`When dropdown position is set, should render indicator
+    icon properly`, async () => {
+    render(<Dropdown {...globalProps} position="top" />);
+    const button = screen.getAllByRole('button')[0];
+    const buttonIcon = button.querySelector('.kc-dropdown-button__content div.kc-dropdown-button__icon i');
+
+    expect(buttonIcon).toHaveClass('fas fa-angle-up');
+    await userEvent.click(button);
+    expect(buttonIcon).toHaveClass('fas fa-angle-down');
   });
 });
