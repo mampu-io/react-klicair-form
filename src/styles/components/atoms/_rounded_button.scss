@@ -115,10 +115,13 @@
 
     &:hover {
       background-color: $neutral3;
+      border: 1px solid $neutral5;
       color: $neutral6;
     }
 
     &:active {
+      background-color: $neutral3;
+      border: 1px solid $neutral5;
       color: $neutral6;
     }
   }
