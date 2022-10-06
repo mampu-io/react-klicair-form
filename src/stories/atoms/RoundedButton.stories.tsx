@@ -18,6 +18,8 @@ Primary.args = {
   model: 'primary',
   size: 'medium',
   disabled: false,
+  tooltipLabel: '',
+  tooltipAlign: 'left',
 };
 
 export const Secondary = Template.bind({});
@@ -28,3 +30,6 @@ Neutral.args = { ...Primary.args, model: 'neutral' };
 
 export const Disabled = Template.bind({});
 Disabled.args = { ...Primary.args, disabled: true };
+
+export const WithTooltip = Template.bind({});
+WithTooltip.args = { ...Primary.args, tooltipLabel: 'Close' };

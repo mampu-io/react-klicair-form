@@ -6,24 +6,63 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
+  position: relative;
+
+  .kc-rounded-button__tooltip {
+    background-color: $neutral7;
+    border-radius: 5px;
+    color: $neutral1;
+    font-size: 14px;
+    margin-top: 5px;
+    padding: 5px;
+    position: absolute;
+    visibility: hidden;
+    white-space: nowrap;
+    z-index: 1;
+
+    &.kc-rounded-button__tooltip--left {
+      left: 0;
+    }
+
+    &.kc-rounded-button__tooltip--right {
+      right: 0;
+    }
+  }
+
+  &:hover {
+    .kc-rounded-button__tooltip {
+      visibility: visible;
+    }
+  }
 
   &.kc-rounded-button--small {
     font-size: 18px;
     height: 36px;
     width: 36px;
+
+    .kc-rounded-button__tooltip {
+      top: 36px;
+    }
   }
 
   &.kc-rounded-button--medium {
     font-size: 24px;
     height: 48px;
     width: 48px;
+
+    .kc-rounded-button__tooltip {
+      top: 48px;
+    }
   }
 
   &.kc-rounded-button--large {
     font-size: 30px;
     height: 60px;
     width: 60px;
+
+    .kc-rounded-button__tooltip {
+      top: 60px;
+    }
   }
 
   &.kc-rounded-button--primary {

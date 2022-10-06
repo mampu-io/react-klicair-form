@@ -6,6 +6,8 @@ export type RoundedButtonProps = {
   model?: 'primary' | 'secondary' | 'neutral';
   size?: 'small' | 'medium' | 'large';
   disabled?: boolean;
+  tooltipLabel?: string;
+  tooltipAlign?: 'left' | 'right';
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
 export default function RoundedButton({
@@ -13,11 +15,14 @@ export default function RoundedButton({
   model,
   size,
   disabled,
+  tooltipLabel,
+  tooltipAlign,
   ...nativeProps
 }: RoundedButtonProps) {
   const roundedButtonModel = `kc-rounded-button--${model}`;
   const roundedButtonSize = `kc-rounded-button--${size}`;
   const roundedButtonVariant = [roundedButtonModel, roundedButtonSize].join(' ');
+  const roundedButtonTooltipAlign = `kc-rounded-button__tooltip--${tooltipAlign}`;
 
   return (
     <button
@@ -29,6 +34,13 @@ export default function RoundedButton({
       <div className="kc-rounded-button__content">
         <i className={iconName} />
       </div>
+      {
+        tooltipLabel ? (
+          <div className={`kc-rounded-button__tooltip ${roundedButtonTooltipAlign}`}>
+            {tooltipLabel}
+          </div>
+        ) : null
+      }
     </button>
   );
 }
@@ -37,4 +49,6 @@ RoundedButton.defaultProps = {
   model: 'primary',
   size: 'medium',
   disabled: false,
+  tooltipLabel: '',
+  tooltipAlign: 'left',
 };
