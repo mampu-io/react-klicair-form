@@ -101,17 +101,21 @@ export default function Dropdown<T extends string>({
       >
         {renderDropdownButtonContent()}
       </button>
-      <ul className="kc-dropdown__items">
-        {
-          values.map((value) => (
-            <li className="kc-dropdown__item" key={value.id}>
-              <button type="button" onClick={() => onDropdownItemClick(value)}>
-                <span className="kc-body2">{value.label}</span>
-              </button>
-            </li>
-          ))
-        }
-      </ul>
+      {
+        values.length > 0 ? (
+          <ul className="kc-dropdown__items">
+            {
+              values.map((value) => (
+                <li className="kc-dropdown__item" key={value.id}>
+                  <button type="button" onClick={() => onDropdownItemClick(value)}>
+                    <span className="kc-body2">{value.label}</span>
+                  </button>
+                </li>
+              ))
+            }
+          </ul>
+        ) : null
+      }
     </div>
   );
 }
