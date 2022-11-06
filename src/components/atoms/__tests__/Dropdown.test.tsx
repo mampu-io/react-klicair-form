@@ -21,6 +21,8 @@ describe('Dropdown component', () => {
    * - When one of the dropdown items is selected, the current value should
    *   be updated
    * - When dropdown position is set, should render indicator icon properly
+   * - When values that passed into the dropdown is empty array, dropdown items
+   *   should not rendered
    */
   const onChangeHandlerMock = jest.fn();
 
@@ -152,5 +154,13 @@ describe('Dropdown component', () => {
     expect(buttonIcon).toHaveClass('fas fa-angle-up');
     await userEvent.click(button);
     expect(buttonIcon).toHaveClass('fas fa-angle-down');
+  });
+
+  test(`When values that passed into the dropdown is empty array, dropdown
+    items should not rendered`, async () => {
+    render(<Dropdown {...globalProps} values={[]} />);
+    const button = screen.getAllByRole('button')[0];
+    const dropdownItemsContainer = button.nextElementSibling;
+    expect(dropdownItemsContainer).toEqual(null);
   });
 });
