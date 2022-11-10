@@ -1,9 +1,10 @@
 @import '../../base/base_dir';
 
-.kc-dropdown {
+.kc-dropdown-tag {
   background-color: $neutral1;
   height: fit-content;
   position: relative;
+  width: 100%;
 
   > button, ul.kc-dropdown__items {
     border: 1px solid $neutral5;
@@ -14,14 +15,17 @@
 
   > button {
     cursor: pointer;
-    height: 40px;
+    height: auto;
+    min-height: 40px;
     padding: 0 12px;
 
     .kc-dropdown-button__content {
       color: $neutral9;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      flex-wrap: wrap;
+      padding-right: 32px;
+      position: relative;
 
       span.kc-button-label {
         white-space: nowrap;
@@ -29,9 +33,50 @@
         text-overflow: ellipsis;
       }
 
-      .kc-dropdown-button__icon i {
-        margin-left: 20px;
-        color: $neutral9;
+      .kc-dropdown-button__icon {
+        align-items: center;
+        display: flex;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 32px;
+
+        i {
+          color: $neutral9;
+          margin-left: 20px;
+        }
+      }
+
+      .kc-dropdown-tag__item {
+        align-items: center;
+        background-color: $neutral5;
+        border-radius: 2px;
+        color: $neutral10;
+        display: flex;
+        margin: 5px 5px 0 0;
+        padding: 5px;
+        padding-right: 25px;
+        position: relative;
+
+        &.kc-dropdown-tag__item--disabled {
+          opacity: 0.7;
+
+          .kc-dropdown-tag__item__delete-btn {
+            cursor: default;
+          }
+        }
+
+        .kc-dropdown-tag__item__delete-btn {
+          background-color: transparent;
+          border: none;
+          color: $neutral7;
+          cursor: pointer;
+          height: 100%;
+          position: absolute;
+          right: 0;
+          width: 25px;
+        }
       }
     }
 
@@ -48,6 +93,7 @@
     left: 0;
     list-style-type: none;
     margin: 0;
+    margin-top: 8px;
     max-height: 130px;
     overflow: auto;
     padding: 0;
@@ -93,23 +139,23 @@
         }
       }
     }
+
+    li.kc-dropdown__item--empty {
+      align-items: center;
+      color: $neutral9;
+      display: flex;
+      height: 40px;
+      padding: 0 12px;
+    }
   }
 
-  &.kc-dropdown--close {
+  &.kc-dropdown-tag--close {
     ul.kc-dropdown__items {
       display: none;
     }
   }
 
-  &.kc-dropdown--fluid {
-    width: 100%;
-  }
-
-  &.kc-dropdown--fixed {
-    width: 200px;
-  }
-
-  &.kc-dropdown--disabled {
+  &.kc-dropdown-tag--disabled {
     background-color: $neutral3;
     
     > button {
@@ -127,20 +173,6 @@
         border: 1px solid $neutral5;
         box-shadow: none;
       }
-    }
-  }
-
-  &.kc-dropdown--bottom {
-    ul.kc-dropdown__items {
-      top: 40px;
-      margin-top: 8px;
-    }
-  }
-
-  &.kc-dropdown--top {
-    ul.kc-dropdown__items {
-      bottom: 40px;
-      margin-bottom: 8px;
     }
   }
 }
