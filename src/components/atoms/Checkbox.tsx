@@ -11,22 +11,25 @@ export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export default function Checkbox({
   label,
-  disabled = false,
-  indeterminate = false,
-  checked = false,
+  disabled,
+  indeterminate,
+  checked,
   ...nativeProps
 }: CheckboxProps) {
   const checkboxIndeterminate = indeterminate ? 'kc-checkbox--indeterminate' : '';
   const checkboxdisabled = disabled ? 'kc-checkbox--disabled' : '';
+  const checkboxVariant = [checkboxIndeterminate, checkboxdisabled].join(' ');
+  const isChecked = checked || false;
+  const isIndeterminate = indeterminate || false;
 
   return (
-    <div className={`kc-checkbox-container ${checkboxIndeterminate} ${checkboxdisabled}`}>
+    <div className={`kc-checkbox ${checkboxVariant}`}>
       <input
         type="checkbox"
-        checked={checked}
+        checked={isChecked}
         disabled={disabled}
         ref={(input) => {
-          if (input) input.indeterminate = checked && indeterminate;
+          if (input) input.indeterminate = isChecked && isIndeterminate;
         }}
         {...nativeProps}
       />
