@@ -7,9 +7,10 @@ export type CopyButtonProps = {
 
 export default function CopyButton({
   valueToCopy,
-  size = 'medium',
+  size,
   disabled = false,
 }: CopyButtonProps) {
+  const DEFAULT_SIZE = 'medium';
   const [tooltipLabel, setTooltipLabel] = useState('Copy');
 
   useEffect(() => {
@@ -29,7 +30,7 @@ export default function CopyButton({
     <RoundedButton
       iconName="fas fa-copy"
       model="neutral"
-      size={size}
+      size={size || DEFAULT_SIZE}
       disabled={disabled}
       tooltipLabel={disabled ? '' : tooltipLabel}
       onClick={() => copyToClipboard(valueToCopy)}
