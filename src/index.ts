@@ -7,6 +7,8 @@ export { default as CopyButton } from './components/atoms/CopyButton';
 export * from './components/atoms/CopyButton';
 export { default as Dropdown } from './components/atoms/Dropdown';
 export * from './components/atoms/Dropdown';
+export { default as DropdownTag } from './components/atoms/DropdownTag';
+export * from './components/atoms/DropdownTag';
 export { default as InputField } from './components/atoms/InputField';
 export * from './components/atoms/InputField';
 export { default as Label } from './components/atoms/Label';

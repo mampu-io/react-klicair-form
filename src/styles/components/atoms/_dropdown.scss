@@ -14,14 +14,17 @@
 
   > button {
     cursor: pointer;
-    height: 40px;
+    height: auto;
+    min-height: 40px;
     padding: 0 12px;
 
     .kc-dropdown-button__content {
       color: $neutral9;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      flex-wrap: wrap;
+      padding-right: 32px;
+      position: relative;
 
       span.kc-button-label {
         white-space: nowrap;
@@ -29,9 +32,50 @@
         text-overflow: ellipsis;
       }
 
-      .kc-dropdown-button__icon i {
-        margin-left: 20px;
-        color: $neutral9;
+      .kc-dropdown-button__icon {
+        align-items: center;
+        display: flex;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 32px;
+
+        i {
+          color: $neutral9;
+          margin-left: 20px;
+        }
+      }
+
+      .kc-dropdown-tag {
+        align-items: center;
+        background-color: $neutral5;
+        border-radius: 2px;
+        color: $neutral10;
+        display: flex;
+        margin: 5px 5px 0 0;
+        padding: 5px;
+        padding-right: 25px;
+        position: relative;
+
+        &.kc-dropdown-tag--disabled {
+          opacity: 0.7;
+
+          .kc-dropdown-tag__delete-btn {
+            cursor: default;
+          }
+        }
+
+        .kc-dropdown-tag__delete-btn {
+          background-color: transparent;
+          border: none;
+          color: $neutral7;
+          cursor: pointer;
+          height: 100%;
+          position: absolute;
+          right: 0;
+          width: 25px;
+        }
       }
     }
 
@@ -92,6 +136,10 @@
           border-bottom: none;
         }
       }
+    }
+
+    li.kc-dropdown__item--empty {
+      padding: 5px 10px;
     }
   }
 
