@@ -6,8 +6,8 @@ import '../../styles/components/atoms/_dropdown_tag.scss';
 export interface DropdownTagProps<T extends string> {
   values: DropdownItem<T>[];
   onChangeHandler: (value: T[]) => void;
+  currentValues: T[];
   defaultLabel?: string;
-  currentValues?: T[];
   disabled?: boolean;
 }
 
@@ -31,10 +31,6 @@ export default function DropdownTag<T extends string>({
   useActionOnClickOutside(dropdownRef, () => setIsDropdownOpen(false));
 
   useEffect(() => {
-    if (!currentValues) {
-      return;
-    }
-
     const targetSelectedDropdownItems = values
       .filter(({ value }) => currentValues.includes(value));
     const targetAvailableDropdownItems = values
@@ -57,18 +53,20 @@ export default function DropdownTag<T extends string>({
 
   const onDropdownItemRemove = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
     e.stopPropagation();
-    setSelectedDropdownItems(
-      selectedDropdownItems
-        .filter((selectedDropdownItem) => selectedDropdownItem.id !== id),
-    );
-    setAvailableDropdownItems(
-      availableDropdownItems.concat(values.filter((value) => value.id === id)),
-    );
+
+    const selectedDropdownItemsUpdated = selectedDropdownItems
+      .filter((selectedDropdownItem) => selectedDropdownItem.id !== id);
+    const availableDropdownItemsUpdated = availableDropdownItems
+      .concat(values.filter((value) => value.id === id));
+
+    onChangeHandler(selectedDropdownItemsUpdated.map(({ value }) => value));
+    setSelectedDropdownItems(selectedDropdownItemsUpdated);
+    setAvailableDropdownItems(availableDropdownItemsUpdated);
     setIsDropdownOpen(false);
   };
 
   const onToggleDropdown = () => {
-    const height = document.querySelector('.kc-dropdown')?.clientHeight;
+    const height = (document.querySelector('.kc-dropdown-tag') as HTMLElement).clientHeight;
     const dropdownItems = document.querySelector('.kc-dropdown__items') as HTMLElement;
     dropdownItems.style.top = `${height}px`;
     setIsDropdownOpen(!isDropdownOpen);
@@ -144,6 +142,5 @@ export default function DropdownTag<T extends string>({
 
 DropdownTag.defaultProps = {
   defaultLabel: '',
-  currentValues: [],
   disabled: false,
 };
