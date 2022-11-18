@@ -1,6 +1,6 @@
 {
   "name": "@kcpackages/react-klicair-form",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
