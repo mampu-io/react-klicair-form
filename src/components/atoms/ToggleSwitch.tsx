@@ -4,25 +4,26 @@ import '../../styles/components/atoms/_toggle_switch.scss';
 
 export interface ToggleSwitchProps {
   disabled?: boolean;
-  checked?: boolean;
+  switchOn?: boolean;
+  onChangeHandler?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 export default function ToggleSwitch({
   disabled,
-  checked,
-  ...nativeProps
+  switchOn,
+  onChangeHandler,
 }: ToggleSwitchProps) {
   const toggleSwitchDisabled = disabled ? 'kc-toggle-switch--disabled' : '';
-  const isChecked = checked || false;
-  const labelOffDisabled = isChecked ? 'kc-toggle-switch__off--disabled' : '';
-  const labelOnDisabled = !isChecked ? 'kc-toggle-switch__on--disabled' : '';
+  const isSwitchOn = switchOn || false;
+  const labelOffDisabled = isSwitchOn ? 'kc-toggle-switch__off--disabled' : '';
+  const labelOnDisabled = !isSwitchOn ? 'kc-toggle-switch__on--disabled' : '';
 
   return (
     <label className={`kc-toggle-switch ${toggleSwitchDisabled}`}>
       <input
         type="checkbox"
-        checked={isChecked}
-        {...nativeProps}
+        checked={isSwitchOn}
+        onChange={onChangeHandler}
       />
       <span className="kc-toggle-switch__slider" />
       <span className={`kc-toggle-switch__off ${labelOffDisabled}`}>OFF</span>
@@ -33,5 +34,6 @@ export default function ToggleSwitch({
 
 ToggleSwitch.defaultProps = {
   disabled: false,
-  checked: false,
+  switchOn: false,
+  onChangeHandler: () => {},
 };
