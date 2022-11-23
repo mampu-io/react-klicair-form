@@ -62,6 +62,10 @@
 
           .kc-dropdown-tag__item__delete-btn {
             cursor: default;
+
+            &:hover {
+              color: $neutral7;
+            }
           }
         }
 
@@ -74,6 +78,10 @@
           position: absolute;
           right: 0;
           width: 25px;
+
+          &:hover {
+            color: $functionalError500;
+          }
         }
       }
     }
