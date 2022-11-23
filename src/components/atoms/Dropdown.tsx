@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useActionOnClickOutside } from '../../common/custom-hooks';
-import '../../styles/components/atoms/_dropdown.scss';
 
 export type DropdownItem<T extends string> = {
   id: string;

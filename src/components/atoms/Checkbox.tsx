@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 import React, { InputHTMLAttributes } from 'react';
-import '../../styles/components/atoms/_checkbox.scss';
 
 export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;

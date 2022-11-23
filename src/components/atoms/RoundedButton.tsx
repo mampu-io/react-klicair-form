@@ -1,5 +1,4 @@
 import React, { ButtonHTMLAttributes } from 'react';
-import '../../styles/components/atoms/_rounded_button.scss';
 
 export type RoundedButtonProps = {
   iconName: string,

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, InputHTMLAttributes } from 'react';
-import '../../styles/components/atoms/_input_field.scss';
 
 export type InputFieldProps = {
   placeholder: string,

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { DropdownItem } from './Dropdown';
 import { useActionOnClickOutside } from '../../common/custom-hooks';
-import '../../styles/components/atoms/_dropdown_tag.scss';
 
 export interface DropdownTagProps<T extends string> {
   values: DropdownItem<T>[];

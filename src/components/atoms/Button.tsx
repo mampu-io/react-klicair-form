@@ -1,6 +1,5 @@
 /* eslint-disable react/button-has-type */
 import React, { ButtonHTMLAttributes } from 'react';
-import '../../styles/components/atoms/_button.scss';
 
 type ButtonWithIconProps = {
   withIcon: true;

@@ -1,3 +1,6 @@
+// Global SCSS Styling
+import './styles/globals.scss';
+
 // Atoms
 export { default as Button } from './components/atoms/Button';
 export * from './components/atoms/Button';

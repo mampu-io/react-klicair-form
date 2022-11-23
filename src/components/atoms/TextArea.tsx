@@ -1,5 +1,4 @@
 import React, { TextareaHTMLAttributes } from 'react';
-import '../../styles/components/atoms/_text_area.scss';
 
 export type TextAreaProps = {
   placeholder: string,
