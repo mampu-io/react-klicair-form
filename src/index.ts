@@ -15,10 +15,12 @@ export { default as Label } from './components/atoms/Label';
 export * from './components/atoms/Label';
 export { default as RoundedButton } from './components/atoms/RoundedButton';
 export * from './components/atoms/RoundedButton';
-export { default as ToggleSwitch } from './components/atoms/ToggleSwitch';
-export * from './components/atoms/ToggleSwitch';
+export { default as Tag } from './components/atoms/Tag';
+export * from './components/atoms/Tag';
 export { default as TextArea } from './components/atoms/TextArea';
 export * from './components/atoms/TextArea';
+export { default as ToggleSwitch } from './components/atoms/ToggleSwitch';
+export * from './components/atoms/ToggleSwitch';
 
 // Molecules
 export { default as FormGroup } from './components/molecules/FormGroup';
