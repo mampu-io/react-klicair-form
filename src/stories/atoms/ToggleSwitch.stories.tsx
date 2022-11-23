@@ -18,17 +18,17 @@ const defaultProps: ToggleSwitchProps = {
   onChangeHandler: (e) => console.log(e.target.checked),
 };
 
-export const Normal = Template.bind({});
-Normal.args = { ...defaultProps };
+export const Off = Template.bind({});
+Off.args = { ...defaultProps };
 
-export const Checked = Template.bind({});
-Checked.args = {
-  ...Normal.args,
+export const On = Template.bind({});
+On.args = {
+  ...Off.args,
   switchOn: true,
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  ...Normal.args,
+  ...Off.args,
   disabled: true,
 };
