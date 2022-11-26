@@ -23,6 +23,7 @@ export default function ToggleSwitch({
         type="checkbox"
         checked={isSwitchOn}
         onChange={onChangeHandler}
+        disabled={disabled}
       />
       <span className="kc-toggle-switch__slider" />
       <span className={`kc-toggle-switch__off ${labelOffDisabled}`}>OFF</span>
