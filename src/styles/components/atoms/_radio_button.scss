@@ -1,0 +1,27 @@
+.kc-radio-button {
+  display: flex;
+  align-items: flex-start;
+
+  input[type="radio"] {
+    accent-color: $primary7;
+    margin-right: 10px;
+  }
+
+  .kc-radio-button__text {
+    display: flex;
+    flex-direction: column;
+
+    &.kc-radio-button__text--disabled {
+      opacity: 60%;
+    }
+
+    .kc-radio-button__label {
+      color: $neutral10;
+    }
+
+    .kc-radio-button__desc {
+      color: $neutral7;
+      margin-top: 5px;
+    }
+  }
+}

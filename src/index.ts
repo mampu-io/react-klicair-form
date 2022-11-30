@@ -16,6 +16,8 @@ export { default as InputField } from './components/atoms/InputField';
 export * from './components/atoms/InputField';
 export { default as Label } from './components/atoms/Label';
 export * from './components/atoms/Label';
+export { default as RadioButton } from './components/atoms/RadioButton';
+export * from './components/atoms/RadioButton';
 export { default as RoundedButton } from './components/atoms/RoundedButton';
 export * from './components/atoms/RoundedButton';
 export { default as Tag } from './components/atoms/Tag';
