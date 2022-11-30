@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from '../atoms/Button';
-import '../../styles/components/organisms/_form_wrapper.scss';
 
 export type FormWrapperProps = {
   onSubmitHandler: Function;
