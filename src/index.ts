@@ -30,7 +30,11 @@ export * from './components/atoms/ToggleSwitch';
 // Molecules
 export { default as FormGroup } from './components/molecules/FormGroup';
 export * from './components/molecules/FormGroup';
+export { default as RecordItem } from './components/molecules/RecordItem';
+export * from './components/molecules/RecordItem';
 
 // Organisms
 export { default as FormWrapper } from './components/organisms/FormWrapper';
 export * from './components/organisms/FormWrapper';
+export { default as RecordTable } from './components/organisms/RecordTable';
+export * from './components/organisms/RecordTable';
