@@ -14,12 +14,12 @@ export default function RecordItem({
   direction,
   children,
 }: RecordItemProps) {
-  const recordItemDirection = `kc-record-item--${direction}`;
+  const recordItemDirection = `kc-record-item-new--${direction}`;
 
   return (
-    <div className={`kc-record-item ${recordItemDirection}`.trim()}>
+    <div className={`kc-record-item-new ${recordItemDirection}`.trim()}>
       <Label value={label} important={false} />
-      <div className="kc-record-item__value">
+      <div className="kc-record-item-new__value">
         {children || <Label value={value || ''} />}
       </div>
     </div>

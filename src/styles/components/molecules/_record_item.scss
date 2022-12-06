@@ -1,8 +1,8 @@
-.kc-record-item {
+.kc-record-item-new {
   display: flex;
   width: fit-content;
 
-  > label, .kc-record-item__value {
+  > label, .kc-record-item-new__value {
     width: fit-content;
     min-width: 150px;
   }
@@ -13,14 +13,14 @@
     margin: 0;
   }
 
-  .kc-record-item__value {
+  .kc-record-item-new__value {
     label {
       color: $neutral11;
       margin: 0;
     }
   }
 
-  &.kc-record-item--horizontal {
+  &.kc-record-item-new--horizontal {
     align-items: center;
 
     > label {
@@ -28,7 +28,7 @@
     }
   }
 
-  &.kc-record-item--vertical {
+  &.kc-record-item-new--vertical {
     flex-direction: column;
 
     > label {
