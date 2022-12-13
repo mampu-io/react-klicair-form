@@ -24,28 +24,19 @@ const Template: Story<CheckboxProps> = (args) => (
   </div>
 );
 
-const GenericProps = {
+const defaultProps: CheckboxProps = {
   label: 'Example',
   disabled: false,
   checked: false,
   indeterminate: false,
+  onChange: (e) => console.log(`checked: ${e.target.checked}`),
 };
 
 export const Checked = Template.bind({});
-Checked.args = {
-  ...GenericProps,
-  checked: true,
-};
+Checked.args = { ...defaultProps, checked: true };
 
 export const Disabled = Template.bind({});
-Disabled.args = {
-  ...GenericProps,
-  disabled: true,
-};
+Disabled.args = { ...defaultProps, disabled: true };
 
 export const Indeterminate = Template.bind({});
-Indeterminate.args = {
-  ...GenericProps,
-  checked: true,
-  indeterminate: true,
-};
+Indeterminate.args = { ...defaultProps, checked: true, indeterminate: true };

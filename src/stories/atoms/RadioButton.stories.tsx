@@ -17,6 +17,7 @@ const defaultProps: RadioButtonProps = {
   checked: false,
   description: 'Biaya transaksi ditanggung oleh nasabah',
   disabled: false,
+  onChange: (e) => console.log(`checked: ${e.target.checked}`),
 };
 
 export const Normal = Template.bind({});
