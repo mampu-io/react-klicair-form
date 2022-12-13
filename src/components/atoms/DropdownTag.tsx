@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { DropdownItem } from './Dropdown';
+import Tag from './Tag';
 import { useActionOnClickOutside } from '../../common/custom-hooks';
 
 export interface DropdownTagProps<T extends string> {
@@ -50,9 +51,7 @@ export default function DropdownTag<T extends string>({
     setSelectedDropdownItems(selectedDropdownItems.concat(dropdownItem));
   };
 
-  const onDropdownItemRemove = (e: React.MouseEvent<HTMLButtonElement>, id: string) => {
-    e.stopPropagation();
-
+  const onDropdownItemRemove = (id: string) => {
     const selectedDropdownItemsUpdated = selectedDropdownItems
       .filter((selectedDropdownItem) => selectedDropdownItem.id !== id);
     const availableDropdownItemsUpdated = availableDropdownItems
@@ -65,6 +64,7 @@ export default function DropdownTag<T extends string>({
   };
 
   const onToggleDropdown = () => {
+    if (disabled) return;
     const height = (document.querySelector('.kc-dropdown-tag') as HTMLElement).clientHeight;
     const dropdownItems = document.querySelector('.kc-dropdown__items') as HTMLElement;
     dropdownItems.style.top = `${height}px`;
@@ -81,17 +81,12 @@ export default function DropdownTag<T extends string>({
     <div className="kc-dropdown-button__content" style={{ paddingBottom: selectedDropdownItems.length === 0 ? 0 : 5 }}>
       {selectedDropdownItems.length > 0 ? (
         selectedDropdownItems.map(({ id, label }) => (
-          <div className={`kc-dropdown-tag__item ${disabled ? 'kc-dropdown-tag__item--disabled' : ''}`} key={id}>
-            {label}
-            <button
-              type="button"
-              className="kc-dropdown-tag__item__delete-btn"
-              onClick={(e) => onDropdownItemRemove(e, id)}
-              disabled={disabled}
-            >
-              <i className="fas fa-xmark" />
-            </button>
-          </div>
+          <Tag
+            key={id}
+            label={label}
+            disabled={disabled}
+            onRemove={() => onDropdownItemRemove(id)}
+          />
         ))
       ) : (
         <span className="kc-button-label">
@@ -106,14 +101,17 @@ export default function DropdownTag<T extends string>({
 
   return (
     <div ref={dropdownRef} className={`kc-dropdown-tag ${dropdownVariant}`}>
-      <button
-        type="button"
+      <div
         className="kc-dropdown-button kc-button-label"
-        disabled={disabled}
+        role="button"
+        aria-label="Dropdown Tag"
+        aria-pressed={false}
+        tabIndex={0}
         onClick={onToggleDropdown}
+        onKeyDown={onToggleDropdown}
       >
         {renderDropdownButtonContent()}
-      </button>
+      </div>
       {
         availableDropdownItems.length > 0 ? (
           <ul className="kc-dropdown__items">

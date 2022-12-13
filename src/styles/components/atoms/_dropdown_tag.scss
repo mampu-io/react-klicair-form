@@ -4,15 +4,16 @@
   position: relative;
   width: 100%;
 
-  > button, ul.kc-dropdown__items {
+  .kc-dropdown-button, ul.kc-dropdown__items {
     border: 1px solid $neutral5;
     border-radius: 2px;
     background-color: transparent;
     width: 100%;
   }
 
-  > button {
+  .kc-dropdown-button {
     cursor: pointer;
+    display: flex;
     height: auto;
     min-height: 40px;
     padding: 0 12px;
@@ -24,6 +25,7 @@
       flex-wrap: wrap;
       padding-right: 32px;
       position: relative;
+      width: 100%;
 
       span.kc-button-label {
         white-space: nowrap;
@@ -46,43 +48,9 @@
         }
       }
 
-      .kc-dropdown-tag__item {
-        align-items: center;
-        background-color: $neutral5;
+      .kc-tag {
         border-radius: 2px;
-        color: $neutral10;
-        display: flex;
         margin: 5px 5px 0 0;
-        padding: 5px;
-        padding-right: 25px;
-        position: relative;
-
-        &.kc-dropdown-tag__item--disabled {
-          opacity: 0.7;
-
-          .kc-dropdown-tag__item__delete-btn {
-            cursor: default;
-
-            &:hover {
-              color: $neutral7;
-            }
-          }
-        }
-
-        .kc-dropdown-tag__item__delete-btn {
-          background-color: transparent;
-          border: none;
-          color: $neutral7;
-          cursor: pointer;
-          height: 100%;
-          position: absolute;
-          right: 0;
-          width: 25px;
-
-          &:hover {
-            color: $functionalError500;
-          }
-        }
       }
     }
 
@@ -164,7 +132,7 @@
   &.kc-dropdown-tag--disabled {
     background-color: $neutral3;
     
-    > button {
+    .kc-dropdown-button {
       cursor: default;
 
       .kc-dropdown-button__content {
