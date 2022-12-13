@@ -1,0 +1,23 @@
+.kc-input-tag {
+  &.kc-input-tag--fixed {
+    width: 300px;
+  }
+
+  &.kc-input-tag--fluid {
+    width: 100%;
+  }
+
+  .kc-input-tag__values {
+    display: flex;
+    flex-wrap: wrap;
+
+    .kc-tag {
+      margin-right: 5px;
+      margin-bottom: 5px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
