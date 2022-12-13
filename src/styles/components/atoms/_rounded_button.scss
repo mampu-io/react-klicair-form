@@ -1,9 +1,4 @@
 .kc-rounded-button {
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
   position: relative;
 
   .kc-rounded-button__tooltip {
@@ -27,16 +22,12 @@
     }
   }
 
-  &:hover {
-    .kc-rounded-button__tooltip {
-      visibility: visible;
-    }
-  }
-
   &.kc-rounded-button--small {
-    font-size: 18px;
-    height: 36px;
-    width: 36px;
+    button {
+      font-size: 18px;
+      height: 36px;
+      width: 36px;
+    }
 
     .kc-rounded-button__tooltip {
       top: 36px;
@@ -44,9 +35,11 @@
   }
 
   &.kc-rounded-button--medium {
-    font-size: 24px;
-    height: 48px;
-    width: 48px;
+    button {
+      font-size: 24px;
+      height: 48px;
+      width: 48px;
+    }
 
     .kc-rounded-button__tooltip {
       top: 48px;
@@ -54,9 +47,11 @@
   }
 
   &.kc-rounded-button--large {
-    font-size: 30px;
-    height: 60px;
-    width: 60px;
+    button {
+      font-size: 30px;
+      height: 60px;
+      width: 60px;
+    }
 
     .kc-rounded-button__tooltip {
       top: 60px;
@@ -64,71 +59,91 @@
   }
 
   &.kc-rounded-button--primary {
-    background-color: $primary7;
-    color: $neutral1;
+    button {
+      background-color: $primary7;
+      color: $neutral1;
 
-    &:hover {
-      background-color: $primary6;
-    }
+      &:hover {
+        background-color: $primary6;
+      }
 
-    &:active {
-      background-color: $primary8;
+      &:active {
+        background-color: $primary8;
+      }
     }
   }
 
   &.kc-rounded-button--secondary {
-    border: 1px solid $neutral7;
-    color: $neutral8;
+    button {
+      border: 1px solid $neutral7;
+      color: $neutral8;
 
-    &:hover {
-      border: 1px solid $primary6;
-      color: $primary6;
-    }
+      &:hover {
+        border: 1px solid $primary6;
+        color: $primary6;
+      }
 
-    &:active {
-      border: 1px solid $primary8;
-      color: $primary8;
+      &:active {
+        border: 1px solid $primary8;
+        color: $primary8;
+      }
     }
   }
 
   &.kc-rounded-button--neutral {
-    background-color: $neutral1;
-    color: $neutral8;
+    button {
+      background-color: $neutral1;
+      color: $neutral8;
 
-    &:hover {
-      background-color: $neutral4;
-      color: $neutral7;
-    }
+      &:hover {
+        background-color: $neutral4;
+        color: $neutral7;
+      }
 
-    &:active {
-      color: $neutral9;
-    }
-  }
-
-  &:disabled {
-    background-color: $neutral3;
-    border: 1px solid $neutral5;
-    color: $neutral6;
-    cursor: default;
-
-    &:hover {
-      background-color: $neutral3;
-      border: 1px solid $neutral5;
-      color: $neutral6;
-    }
-
-    &:active {
-      background-color: $neutral3;
-      border: 1px solid $neutral5;
-      color: $neutral6;
+      &:active {
+        color: $neutral9;
+      }
     }
   }
 
-  .kc-rounded-button__content {
+  button {
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-transform: uppercase;
-    width: 100%;
+
+    &:hover {
+      + .kc-rounded-button__tooltip {
+        visibility: visible;
+      }
+    }
+
+    &:disabled {
+      background-color: $neutral3;
+      border: 1px solid $neutral5;
+      color: $neutral6;
+      cursor: default;
+  
+      &:hover {
+        background-color: $neutral3;
+        border: 1px solid $neutral5;
+        color: $neutral6;
+      }
+  
+      &:active {
+        background-color: $neutral3;
+        border: 1px solid $neutral5;
+        color: $neutral6;
+      }
+    }
+  
+    .kc-rounded-button__content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+      width: 100%;
+    }
   }
 }

@@ -24,23 +24,18 @@ export default function RoundedButton({
   const roundedButtonTooltipAlign = `kc-rounded-button__tooltip--${tooltipAlign}`;
 
   return (
-    <button
-      type="button"
-      className={`kc-rounded-button ${roundedButtonVariant}`}
-      disabled={disabled}
-      {...nativeProps}
-    >
-      <div className="kc-rounded-button__content">
-        <i className={iconName} />
-      </div>
-      {
-        tooltipLabel ? (
-          <div className={`kc-rounded-button__tooltip ${roundedButtonTooltipAlign}`}>
-            {tooltipLabel}
-          </div>
-        ) : null
-      }
-    </button>
+    <div className={`kc-rounded-button ${roundedButtonVariant}`.trim()}>
+      <button type="button" disabled={disabled} {...nativeProps}>
+        <div className="kc-rounded-button__content">
+          <i className={iconName} />
+        </div>
+      </button>
+      {tooltipLabel ? (
+        <div className={`kc-rounded-button__tooltip ${roundedButtonTooltipAlign}`}>
+          {tooltipLabel}
+        </div>
+      ) : null}
+    </div>
   );
 }
 
