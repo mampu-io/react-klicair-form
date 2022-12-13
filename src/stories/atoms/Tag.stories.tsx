@@ -13,8 +13,12 @@ export default {
 const Template: Story<TagProps> = (args) => <Tag {...args} />;
 
 const defaultProps: TagProps = {
-  label: 'ExampleTag',
+  label: 'Example Tag',
+  onRemove: () => console.log('remove tag'),
 };
 
 export const Normal = Template.bind({});
 Normal.args = { ...defaultProps };
+
+export const Disabled = Template.bind({});
+Disabled.args = { ...defaultProps, disabled: true };
