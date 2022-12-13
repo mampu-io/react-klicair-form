@@ -1,0 +1,16 @@
+.kc-badge {
+  align-items: center;
+  background-color: $neutral1;
+  border: 1px solid $neutral8;
+  border-radius: 50px;
+  color: $neutral8;
+  display: flex;
+  height: 32px;
+  justify-content: center;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  min-width: 100px;
+  padding: 0 24px;
+  text-align: center;
+  width: fit-content;
+}

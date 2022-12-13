@@ -2,6 +2,8 @@
 import './styles/globals.scss';
 
 // Atoms
+export { default as Badge } from './components/atoms/Badge';
+export * from './components/atoms/Badge';
 export { default as Button } from './components/atoms/Button';
 export * from './components/atoms/Button';
 export { default as Checkbox } from './components/atoms/Checkbox';
