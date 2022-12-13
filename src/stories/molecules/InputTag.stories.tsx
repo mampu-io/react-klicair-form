@@ -1,9 +1,9 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import InputTag, { InputTagProps } from '../../components/atoms/InputTag';
+import InputTag, { InputTagProps } from '../../components/molecules/InputTag';
 
 export default {
-  title: 'Components/Atoms/InputTag',
+  title: 'Components/Molecules/InputTag',
   component: InputTag,
   argTypes: {
     backgroundColor: { control: 'color' },

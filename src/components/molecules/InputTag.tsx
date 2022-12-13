@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import InputField, { InputFieldProps } from './InputField';
-import Tag from './Tag';
+import InputField, { InputFieldProps } from '../atoms/InputField';
+import Tag from '../atoms/Tag';
 
 export interface InputTagProps extends InputFieldProps {
   values: string[];

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import { DropdownItem } from '../../components/atoms/Dropdown';
-import DropdownTag, { DropdownTagProps } from '../../components/atoms/DropdownTag';
+import DropdownTag, { DropdownTagProps } from '../../components/molecules/DropdownTag';
 
 export default {
-  title: 'Components/Atoms/DropdownTag',
+  title: 'Components/Molecules/DropdownTag',
   component: DropdownTag,
   argTypes: {
     backgroundColor: { control: 'color' },

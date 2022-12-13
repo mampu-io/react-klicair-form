@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { DropdownItem } from './Dropdown';
-import Tag from './Tag';
+import { DropdownItem } from '../atoms/Dropdown';
+import Tag from '../atoms/Tag';
 import { useActionOnClickOutside } from '../../common/custom-hooks';
 
 export interface DropdownTagProps<T extends string> {

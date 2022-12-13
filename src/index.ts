@@ -12,12 +12,8 @@ export { default as CopyButton } from './components/atoms/CopyButton';
 export * from './components/atoms/CopyButton';
 export { default as Dropdown } from './components/atoms/Dropdown';
 export * from './components/atoms/Dropdown';
-export { default as DropdownTag } from './components/atoms/DropdownTag';
-export * from './components/atoms/DropdownTag';
 export { default as InputField } from './components/atoms/InputField';
 export * from './components/atoms/InputField';
-export { default as InputTag } from './components/atoms/InputTag';
-export * from './components/atoms/InputTag';
 export { default as Label } from './components/atoms/Label';
 export * from './components/atoms/Label';
 export { default as RadioButton } from './components/atoms/RadioButton';
@@ -32,8 +28,12 @@ export { default as ToggleSwitch } from './components/atoms/ToggleSwitch';
 export * from './components/atoms/ToggleSwitch';
 
 // Molecules
+export { default as DropdownTag } from './components/molecules/DropdownTag';
+export * from './components/molecules/DropdownTag';
 export { default as FormGroup } from './components/molecules/FormGroup';
 export * from './components/molecules/FormGroup';
+export { default as InputTag } from './components/molecules/InputTag';
+export * from './components/molecules/InputTag';
 export { default as RecordItem } from './components/molecules/RecordItem';
 export * from './components/molecules/RecordItem';
 

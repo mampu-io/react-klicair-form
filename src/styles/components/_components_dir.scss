@@ -3,9 +3,7 @@
 @import 'atoms/button';
 @import 'atoms/checkbox';
 @import 'atoms/dropdown';
-@import 'atoms/dropdown_tag';
 @import 'atoms/input_field';
-@import 'atoms/input_tag';
 @import 'atoms/radio_button';
 @import 'atoms/rounded_button';
 @import 'atoms/tag';
@@ -13,7 +11,9 @@
 @import 'atoms/toggle_switch';
 
 // Molecules
+@import 'molecules/dropdown_tag';
 @import 'molecules/form_group';
+@import 'molecules/input_tag';
 @import 'molecules/record_item';
 
 // Organisms
