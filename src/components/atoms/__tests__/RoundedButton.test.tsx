@@ -35,7 +35,8 @@ describe('RoundedButton component', () => {
     expect(button).toBeDefined();
     expect(buttonIcon).toHaveClass('fas fa-xmark');
     expect(button).not.toBeDisabled();
-    expect(button).toHaveClass('kc-rounded-button kc-rounded-button--primary kc-rounded-button--medium');
+    expect(button.parentElement)
+      .toHaveClass('kc-rounded-button kc-rounded-button--primary kc-rounded-button--medium');
   });
 
   test('When button in disabled state, should not be able to click', () => {
@@ -52,7 +53,8 @@ describe('RoundedButton component', () => {
     const button = screen.getByRole('button');
 
     expect(button).toBeDefined();
-    expect(button).toHaveClass('kc-rounded-button kc-rounded-button--small kc-rounded-button--secondary');
+    expect(button.parentElement)
+      .toHaveClass('kc-rounded-button kc-rounded-button--small kc-rounded-button--secondary');
   });
 
   test('When button is clicked, onClick handler should be called', async () => {
@@ -68,8 +70,8 @@ describe('RoundedButton component', () => {
     const tooltipLabel = 'this is tooltip';
     render(<RoundedButton {...globalProps} tooltipLabel={tooltipLabel} />);
     const button = screen.getByRole('button');
-    const buttonTooltip = button.querySelector('.kc-rounded-button__tooltip') as HTMLElement;
+    const buttonTooltip = button.nextElementSibling;
     expect(buttonTooltip).toBeDefined();
-    expect(buttonTooltip.textContent).toEqual(tooltipLabel);
+    expect(buttonTooltip?.textContent).toEqual(tooltipLabel);
   });
 });

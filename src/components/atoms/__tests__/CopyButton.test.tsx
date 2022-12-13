@@ -31,25 +31,24 @@ describe('CopyButton component', () => {
     render(<CopyButton valueToCopy={VALUE_TO_COPY} />);
     const copyButton = screen.getByRole('button') as HTMLInputElement;
     const copyButtonIcon = copyButton.querySelector('i') as HTMLElement;
-    const copyButtonTooltip = copyButton
-      .querySelector('.kc-rounded-button__tooltip') as HTMLElement;
+    const copyButtonTooltip = copyButton.nextElementSibling;
 
     expect(copyButton).toBeDefined();
     expect(copyButtonIcon).toHaveClass('fas fa-copy');
     expect(copyButton).not.toBeDisabled();
-    expect(copyButton).toHaveClass(...[
+    expect(copyButton.parentElement).toHaveClass(...[
       'kc-rounded-button',
       'kc-rounded-button--neutral',
       'kc-rounded-button--medium',
     ]);
-    expect(copyButtonTooltip.textContent).toEqual('Copy');
+    expect(copyButtonTooltip?.textContent).toEqual('Copy');
 
     fireEvent.click(copyButton);
-    expect(copyButtonTooltip.textContent).toEqual('Copied');
+    expect(copyButtonTooltip?.textContent).toEqual('Copied');
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith(VALUE_TO_COPY);
 
     act(() => { jest.runAllTimers(); });
-    expect(copyButtonTooltip.textContent).toEqual('Copy');
+    expect(copyButtonTooltip?.textContent).toEqual('Copy');
   });
 
   test('When the CopyButton in disabled state', async () => {

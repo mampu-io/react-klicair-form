@@ -8,6 +8,8 @@ describe('FormGroup component', () => {
   /**
    * Test Cases:
    * - With default props, should render form group with horizontal direction
+   * - When note is defined, should render note after the form group label
+   * - When isRequired is true, should render form group required indicator
    */
   afterEach(cleanup);
 
@@ -27,5 +29,32 @@ describe('FormGroup component', () => {
 
     const inputField = formGroup?.querySelector('kc-inputfield');
     expect(inputField).toBeDefined();
+  });
+
+  test(`When note is defined, should render note after the form
+    group label`, () => {
+    const expectedNote = 'Maksimal 50 karakter';
+    render(
+      <FormGroup label="Nama Sesuai Identitas" note={expectedNote}>
+        <InputField placeholder="Masukkan nama sesuai identitas" width="fluid" />
+      </FormGroup>,
+    );
+
+    const formGroup = document.querySelector('.kc-form-group') as HTMLElement;
+    const formGroupNote = formGroup.querySelector('.kc-form-group__note') as HTMLElement;
+    expect(formGroupNote.textContent).toEqual(expectedNote);
+  });
+
+  test(`When isRequired is true, should render form group required
+    indicator`, () => {
+    render(
+      <FormGroup label="Nama Sesuai Identitas" isRequired>
+        <InputField placeholder="Masukkan nama sesuai identitas" width="fluid" />
+      </FormGroup>,
+    );
+
+    const formGroup = document.querySelector('.kc-form-group') as HTMLElement;
+    const formGroupRequiredIndicator = formGroup.querySelector('.kc-form-group__is-required');
+    expect(formGroupRequiredIndicator).toBeDefined();
   });
 });

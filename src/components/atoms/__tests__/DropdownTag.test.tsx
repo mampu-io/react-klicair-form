@@ -58,11 +58,8 @@ describe('DropdownTag component', () => {
     render(<DropdownTag {...globalProps} />);
     const dropdownTag = screen.getAllByRole('button')[0];
     expect(dropdownTag).toBeDefined();
-    expect(dropdownTag.parentElement).toHaveClass(...[
-      'kc-dropdown-tag',
-      'kc-dropdown-tag--close',
-    ]);
-    expect(dropdownTag).not.toBeDisabled();
+    expect(dropdownTag.parentElement).toHaveClass('kc-dropdown-tag kc-dropdown-tag--close');
+    expect(dropdownTag.parentElement).not.toHaveClass('kc-dropdown-tag--disabled');
     expect(dropdownTag).toHaveClass('kc-dropdown-button kc-button-label');
 
     const dropdownTagLabel = dropdownTag
@@ -101,7 +98,7 @@ describe('DropdownTag component', () => {
     });
 
     const selectedDropdownTags = Array.from(dropdownTag
-      .querySelectorAll('kc-dropdown-tag__item'));
+      .querySelectorAll('kc-tag'));
 
     selectedDropdownTags.forEach((selectedDropdownTag, i) => {
       expect(selectedDropdownTag.textContent)
@@ -114,7 +111,7 @@ describe('DropdownTag component', () => {
     const dropdownTag = screen.getAllByRole('button')[0];
     const dropdownTagItemsContainer = dropdownTag.nextElementSibling as HTMLElement;
     const removeTagButtons = Array.from(dropdownTag
-      .querySelectorAll('.kc-dropdown-tag__item__delete-btn'));
+      .querySelectorAll('.kc-tag__remove-btn'));
 
     removeTagButtons.forEach((removeTagButton, i) => {
       act(() => { fireEvent.click(removeTagButton); });
@@ -122,7 +119,7 @@ describe('DropdownTag component', () => {
         .from(dropdownTagItemsContainer.querySelectorAll('.kc-dropdown__item button'))
         .map((dropdownItem) => dropdownItem.textContent as string);
       const tagItemLabels = Array
-        .from(dropdownTag.querySelectorAll('kc-dropdown-tag__item'))
+        .from(dropdownTag.querySelectorAll('kc-tag'))
         .map((tagItem) => tagItem.textContent as string);
       expect(dropdownItemLabels).toContain(expectedCurrentValues[i]);
       expect(tagItemLabels).not.toContain(expectedCurrentValues[i]);
@@ -155,6 +152,13 @@ describe('DropdownTag component', () => {
     to interact`, () => {
     render(<DropdownTag {...globalProps} currentValues={expectedCurrentValues} disabled />);
     const dropdownTag = screen.getAllByRole('button')[0];
-    expect(dropdownTag).toBeDisabled();
+    const dropdownTagIcon = dropdownTag
+      .querySelector('.kc-dropdown-button__content .kc-dropdown-button__icon i') as HTMLElement;
+
+    expect(dropdownTag.parentElement).toHaveClass('kc-dropdown-tag--disabled');
+
+    act(() => { fireEvent.click(dropdownTag); });
+    expect(dropdownTagIcon).toHaveClass('fas fa-angle-down');
+    expect(dropdownTag.parentElement).toHaveClass('kc-dropdown-tag--close');
   });
 });
