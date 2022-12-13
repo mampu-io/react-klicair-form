@@ -7,9 +7,26 @@
     max-width: 500px;
   }
 
+  .kc-form-group__identity {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+
+    .kc-form-group__is-required {
+      color: $functionalError500;
+      font-size: 20px;
+      font-weight: 700;
+      margin-left: 3px;
+    }
+  
+    .kc-form-group__note {
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+  }
+
   &.kc-form-group--horizontal {
     .kc-form-group__label {
-      margin: 0;
       margin-right: 30px;
       width: 300px;
 
@@ -23,7 +40,6 @@
     flex-direction: column;
 
     .kc-form-group__label {
-      margin: 0;
       margin-bottom: 10px;
       max-width: 500px;
     }

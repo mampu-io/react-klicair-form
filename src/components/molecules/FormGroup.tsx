@@ -4,20 +4,28 @@ import Label from '../atoms/Label';
 export type FormGroupProps = {
   label: string,
   direction?: 'horizontal' | 'vertical';
+  note?: string;
+  isRequired?: boolean;
   children: React.ReactNode;
 }
 
 export default function FormGroup({
   label,
   direction,
+  note,
+  isRequired,
   children,
 }: FormGroupProps) {
   const formGroupDirection = `kc-form-group--${direction}`;
 
   return (
     <div className={`kc-form-group ${formGroupDirection}`}>
-      <div className="kc-form-group__label">
-        <Label value={label} />
+      <div className="kc-form-group__identity">
+        <div className="kc-form-group__label">
+          <Label value={label} />
+          {isRequired ? <span className="kc-form-group__is-required">*</span> : null}
+        </div>
+        {note ? <span className="kc-form-group__note kc-overline">{note}</span> : null}
       </div>
       {children}
     </div>
@@ -26,4 +34,6 @@ export default function FormGroup({
 
 FormGroup.defaultProps = {
   direction: 'horizontal',
+  note: '',
+  isRequired: false,
 };

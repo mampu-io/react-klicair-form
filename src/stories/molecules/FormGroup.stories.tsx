@@ -18,8 +18,7 @@ const Template: Story<FormGroupProps> = (args) => (
   </div>
 );
 
-export const Horizontal = Template.bind({});
-Horizontal.args = {
+const defaultProps: FormGroupProps = {
   label: 'Nama Sesuai Identitas',
   direction: 'horizontal',
   children: (
@@ -27,5 +26,14 @@ Horizontal.args = {
   ),
 };
 
+export const Horizontal = Template.bind({});
+Horizontal.args = { ...defaultProps };
+
 export const Vertical = Template.bind({});
 Vertical.args = { ...Horizontal.args, direction: 'vertical' };
+
+export const WithNote = Template.bind({});
+WithNote.args = { ...Horizontal.args, note: '(Maksimal 50 karakter)' };
+
+export const Required = Template.bind({});
+Required.args = { ...WithNote.args, isRequired: true };
