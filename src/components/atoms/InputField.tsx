@@ -10,7 +10,7 @@ export type InputFieldProps = {
   subtitle?: string;
   disabled?: boolean;
   isError?: boolean;
-} & InputHTMLAttributes<HTMLInputElement>
+} & InputHTMLAttributes<HTMLInputElement> & React.ClassAttributes<HTMLInputElement>;
 
 export default function InputField({
   placeholder,
@@ -23,6 +23,7 @@ export default function InputField({
   subtitle,
   disabled,
   isError,
+  ref,
   ...nativeProps
 }: InputFieldProps) {
   const [seePassword, setSeePassword] = useState(false);
@@ -87,6 +88,7 @@ export default function InputField({
           ) : null
         }
         <input
+          ref={ref}
           placeholder={placeholder}
           disabled={disabled}
           type={types}
