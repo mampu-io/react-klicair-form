@@ -15,8 +15,8 @@ export default function RecordTable({
   return direction === 'horizontal' ? (
     <table className="kc-record-table">
       <tbody>
-        {records.map(({ label, value, children }) => (
-          <tr>
+        {records.map(({ label, value, children }, i) => (
+          <tr key={`record-item-${i + 1}`}>
             <td className="kc-record-table__label">
               <span className="kc-body1">{label}</span>
             </td>
