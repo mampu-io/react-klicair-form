@@ -44,4 +44,20 @@
       max-width: 500px;
     }
   }
+
+  &.kc-form-group--with-note {
+    .kc-form-group__identity {
+      .kc-form-group__label {
+        margin-bottom: 0;
+
+        label {
+          margin: 0;
+        }
+      }
+
+      span.kc-form-group__note {
+        margin-bottom: 10px;
+      }
+    }
+  }
 }

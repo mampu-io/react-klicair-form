@@ -17,9 +17,11 @@ export default function FormGroup({
   children,
 }: FormGroupProps) {
   const formGroupDirection = `kc-form-group--${direction}`;
+  const formGroupWithNote = note ? 'kc-form-group--with-note' : '';
+  const formGroupVariant = [formGroupDirection, formGroupWithNote].join(' ');
 
   return (
-    <div className={`kc-form-group ${formGroupDirection}`}>
+    <div className={`kc-form-group ${formGroupVariant}`.trim()}>
       <div className="kc-form-group__identity">
         <div className="kc-form-group__label">
           <Label value={label} />
