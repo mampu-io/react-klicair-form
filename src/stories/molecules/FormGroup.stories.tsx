@@ -1,7 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import FormGroup, { FormGroupProps } from '../../components/molecules/FormGroup';
-import InputField from '../../components/atoms/InputField';
+import InputField, { InputFieldProps } from '../../components/atoms/InputField';
 
 export default {
   title: 'Components/Molecules/FormGroup',
@@ -18,11 +18,16 @@ const Template: Story<FormGroupProps> = (args) => (
   </div>
 );
 
+const inputFieldProps: InputFieldProps = {
+  placeholder: 'Masukkan nama sesuai identitas',
+  width: 'fluid',
+};
+
 const defaultProps: FormGroupProps = {
   label: 'Nama Sesuai Identitas',
   direction: 'horizontal',
   children: (
-    <InputField placeholder="Masukkan nama sesuai identitas" width="fluid" />
+    <InputField {...inputFieldProps} />
   ),
 };
 
@@ -37,3 +42,12 @@ WithNote.args = { ...Horizontal.args, note: '(Maksimal 50 karakter)' };
 
 export const Required = Template.bind({});
 Required.args = { ...WithNote.args, isRequired: true };
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  ...WithNote.args,
+  disabled: true,
+  children: (
+    <InputField {...inputFieldProps} disabled />
+  ),
+};

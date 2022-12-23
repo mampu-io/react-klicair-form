@@ -6,6 +6,7 @@ export type FormGroupProps = {
   direction?: 'horizontal' | 'vertical';
   note?: string;
   isRequired?: boolean;
+  disabled?: boolean;
   children: React.ReactNode;
 }
 
@@ -14,11 +15,13 @@ export default function FormGroup({
   direction,
   note,
   isRequired,
+  disabled,
   children,
 }: FormGroupProps) {
   const formGroupDirection = `kc-form-group--${direction}`;
   const formGroupWithNote = note ? 'kc-form-group--with-note' : '';
-  const formGroupVariant = [formGroupDirection, formGroupWithNote].join(' ');
+  const formGroupDisabled = disabled ? 'kc-form-group--disabled' : '';
+  const formGroupVariant = [formGroupDirection, formGroupWithNote, formGroupDisabled].join(' ');
 
   return (
     <div className={`kc-form-group ${formGroupVariant}`.trim()}>
@@ -38,4 +41,5 @@ FormGroup.defaultProps = {
   direction: 'horizontal',
   note: '',
   isRequired: false,
+  disabled: false,
 };

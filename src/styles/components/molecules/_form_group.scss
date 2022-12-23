@@ -60,4 +60,10 @@
       }
     }
   }
+
+  &.kc-form-group--disabled {
+    .kc-form-group__identity {
+      opacity: 0.5;
+    }
+  }
 }
