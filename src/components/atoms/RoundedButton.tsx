@@ -7,6 +7,7 @@ export type RoundedButtonProps = {
   disabled?: boolean;
   tooltipLabel?: string;
   tooltipAlign?: 'left' | 'right';
+  title?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
 export default function RoundedButton({
@@ -16,6 +17,7 @@ export default function RoundedButton({
   disabled,
   tooltipLabel,
   tooltipAlign,
+  title,
   ...nativeProps
 }: RoundedButtonProps) {
   const roundedButtonModel = `kc-rounded-button--${model}`;
@@ -24,7 +26,7 @@ export default function RoundedButton({
   const roundedButtonTooltipAlign = `kc-rounded-button__tooltip--${tooltipAlign}`;
 
   return (
-    <div className={`kc-rounded-button ${roundedButtonVariant}`.trim()}>
+    <div className={`kc-rounded-button ${roundedButtonVariant}`.trim()} title={title}>
       <button type="button" disabled={disabled} {...nativeProps}>
         <div className="kc-rounded-button__content">
           <i className={iconName} />
@@ -45,4 +47,5 @@ RoundedButton.defaultProps = {
   disabled: false,
   tooltipLabel: '',
   tooltipAlign: 'left',
+  title: '',
 };

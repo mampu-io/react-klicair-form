@@ -20,6 +20,7 @@ Primary.args = {
   disabled: false,
   tooltipLabel: '',
   tooltipAlign: 'left',
+  title: '',
 };
 
 export const Secondary = Template.bind({});
@@ -33,3 +34,6 @@ Disabled.args = { ...Primary.args, disabled: true };
 
 export const WithTooltip = Template.bind({});
 WithTooltip.args = { ...Primary.args, tooltipLabel: 'Close' };
+
+export const WithTitle = Template.bind({});
+WithTitle.args = { ...Primary.args, title: 'Close' };
