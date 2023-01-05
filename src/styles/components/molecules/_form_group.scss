@@ -26,10 +26,12 @@
   }
 
   &.kc-form-group--horizontal {
-    .kc-form-group__label {
+    .kc-form-group__identity {
       margin-right: 30px;
       width: 300px;
+    }
 
+    .kc-form-group__label {
       label {
         line-height: 24px;
       }
