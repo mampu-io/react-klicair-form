@@ -15,8 +15,6 @@ describe('InputField component', () => {
    * - Should have capability to show subtitle
    * - Should have indicator when input field in error state
    * - Should have indicator when input field in disabled state
-   * - When input field type is password, should have toggle button to show and
-   *   hide password
    */
   afterEach(cleanup);
 
@@ -82,27 +80,5 @@ describe('InputField component', () => {
     render(<InputField placeholder="example" disabled />);
     const inputField: HTMLInputElement = screen.getByRole('textbox');
     expect(inputField).toBeDisabled();
-  });
-
-  test(`When input field type is password, should have toggle button to show 
-    and hide password`, async () => {
-    render(<InputField placeholder="example" type="password" />);
-    const inputField = document.querySelector('input');
-    const inputFieldSuffix = document.querySelector('.kc-inputfield__suffix');
-    const togglePasswordButton = screen.getByRole('button');
-    const togglePasswordIcon = togglePasswordButton.querySelector('i');
-
-    expect(inputField?.type).toEqual('password');
-    expect(inputFieldSuffix).toBeFalsy();
-    expect(togglePasswordButton).toBeTruthy();
-    expect(togglePasswordIcon).toHaveClass('fa-eye');
-
-    await userEvent.click(togglePasswordButton);
-    expect(inputField?.type).toEqual('text');
-    expect(togglePasswordIcon).toHaveClass('fa-eye-slash');
-
-    await userEvent.click(togglePasswordButton);
-    expect(inputField?.type).toEqual('password');
-    expect(togglePasswordIcon).toHaveClass('fa-eye');
   });
 });

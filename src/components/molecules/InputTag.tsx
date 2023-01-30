@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import InputField, { InputFieldProps } from '../atoms/InputField';
 import Tag from '../atoms/Tag';
 
-export interface InputTagProps extends InputFieldProps {
+export type InputTagProps = InputFieldProps & {
   values: string[];
   onAddValue: (value: string) => void;
   onRemoveValue: (value: string) => void;

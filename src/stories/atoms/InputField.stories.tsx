@@ -12,14 +12,16 @@ export default {
 
 const Template: Story<InputFieldProps> = (args) => <InputField {...args} />;
 
-export const Normal = Template.bind({});
-Normal.args = {
+const defaultProps: InputFieldProps = {
   placeholder: 'example',
   width: 'fixed',
   _size: 'medium',
   disabled: false,
   isError: false,
 };
+
+export const Normal = Template.bind({});
+Normal.args = { ...defaultProps };
 
 export const Prefix = Template.bind({});
 Prefix.args = {
@@ -69,15 +71,15 @@ Error.args = {
   isError: true,
 };
 
-export const Password = Template.bind({});
-Password.args = {
+export const WithIconButton = Template.bind({});
+WithIconButton.args = {
   ...Normal.args,
-  title: 'Password',
-  type: 'password',
+  iconButtonName: 'fas fa-xmark',
+  onClickIconButton: () => console.log('icon button clicked'),
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  ...Password.args,
+  ...WithIconButton.args,
   disabled: true,
 };

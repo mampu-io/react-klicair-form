@@ -1,6 +1,6 @@
-import React, { useState, useEffect, InputHTMLAttributes } from 'react';
+import React, { InputHTMLAttributes } from 'react';
 
-export type InputFieldProps = {
+type InputFieldGeneralProps = {
   placeholder: string,
   width?: 'fixed' | 'fluid';
   _prefix?: string,
@@ -10,7 +10,20 @@ export type InputFieldProps = {
   subtitle?: string;
   disabled?: boolean;
   isError?: boolean;
-} & InputHTMLAttributes<HTMLInputElement> & React.ClassAttributes<HTMLInputElement>;
+};
+
+type InputFieldWithIconButtonProps = {
+  iconButtonName?: undefined;
+  onClickIconButton?: () => void;
+} | {
+  iconButtonName?: string;
+  onClickIconButton: () => void;
+}
+
+export type InputFieldProps = InputFieldGeneralProps
+  & InputFieldWithIconButtonProps
+  & InputHTMLAttributes<HTMLInputElement>
+  & React.ClassAttributes<HTMLInputElement>;
 
 export default function InputField({
   placeholder,
@@ -23,40 +36,18 @@ export default function InputField({
   subtitle,
   disabled,
   isError,
+  iconButtonName,
+  onClickIconButton,
   ref,
   ...nativeProps
 }: InputFieldProps) {
-  const [seePassword, setSeePassword] = useState(false);
-  const [types, setTypes] = useState(type);
   const inputFieldSize = `kc-inputfield--${_size}`;
   const inputFieldDisable = disabled ? 'kc-inputfield--disabled' : '';
   const inputFieldError = !disabled && isError ? 'kc-inputfield--error' : '';
   const inputFieldWidth = `kc-inputfield--${width}`;
   const inputFieldVariant = [inputFieldSize, inputFieldDisable, inputFieldError, inputFieldWidth].join(' ');
 
-  const showTogglePassword = () => (
-    !seePassword ? (
-      <button
-        className="kc-inputfield__toggle-password"
-        type="button"
-        disabled={disabled}
-        onClick={() => setSeePassword(!seePassword)}
-      >
-        <i className="fa fa-eye" />
-      </button>
-    ) : (
-      <button
-        className="kc-inputfield__toggle-password"
-        type="button"
-        disabled={disabled}
-        onClick={() => setSeePassword(!seePassword)}
-      >
-        <i className="fa fa-eye-slash" />
-      </button>
-    )
-  );
-
-  const showSuffix = () => (
+  const renderSuffix = () => (
     suffix ? (
       <div className="kc-inputfield__suffix">
         <span className="kc-body2">{suffix}</span>
@@ -64,11 +55,20 @@ export default function InputField({
     ) : null
   );
 
-  useEffect(() => {
-    if (type === 'password') {
-      setTypes(seePassword ? 'text' : 'password');
-    }
-  }, [seePassword, type]);
+  const renderIconButton = () => {
+    if (!iconButtonName) return null;
+
+    return (
+      <button
+        className="kc-inputfield__icon-button"
+        type="button"
+        disabled={disabled}
+        onClick={() => onClickIconButton()}
+      >
+        <i className={iconButtonName} />
+      </button>
+    );
+  };
 
   return (
     <div className={`kc-inputfield ${inputFieldVariant}`}>
@@ -91,10 +91,11 @@ export default function InputField({
           ref={ref}
           placeholder={placeholder}
           disabled={disabled}
-          type={types}
+          type={type}
           {...nativeProps}
         />
-        {type === 'password' ? showTogglePassword() : showSuffix()}
+        {renderSuffix()}
+        {renderIconButton()}
       </div>
       {
         subtitle ? (
