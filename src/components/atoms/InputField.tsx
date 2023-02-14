@@ -14,9 +14,11 @@ type InputFieldGeneralProps = {
 
 type InputFieldWithIconButtonProps = {
   iconButtonName?: undefined;
+  disabledIconButton?: boolean;
   onClickIconButton?: () => void;
 } | {
   iconButtonName?: string;
+  disabledIconButton?: boolean;
   onClickIconButton: () => void;
 }
 
@@ -37,6 +39,7 @@ export default function InputField({
   disabled,
   isError,
   iconButtonName,
+  disabledIconButton = false,
   onClickIconButton,
   ref,
   ...nativeProps
@@ -62,7 +65,7 @@ export default function InputField({
       <button
         className="kc-inputfield__icon-button"
         type="button"
-        disabled={disabled}
+        disabled={disabled || disabledIconButton}
         onClick={() => onClickIconButton()}
       >
         <i className={iconButtonName} />

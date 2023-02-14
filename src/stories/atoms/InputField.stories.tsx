@@ -78,6 +78,12 @@ WithIconButton.args = {
   onClickIconButton: () => console.log('icon button clicked'),
 };
 
+export const WithIconButtonDisabled = Template.bind({});
+WithIconButtonDisabled.args = {
+  ...WithIconButton.args,
+  disabledIconButton: true,
+};
+
 export const Disabled = Template.bind({});
 Disabled.args = {
   ...WithIconButton.args,
