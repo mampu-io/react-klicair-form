@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes } from 'react';
+import React, { ClassAttributes, InputHTMLAttributes } from 'react';
 
 type InputFieldGeneralProps = {
   placeholder: string,
@@ -20,12 +20,12 @@ type InputFieldWithIconButtonProps = {
   iconButtonName?: string;
   disabledIconButton?: boolean;
   onClickIconButton: () => void;
-}
+};
 
 export type InputFieldProps = InputFieldGeneralProps
   & InputFieldWithIconButtonProps
   & InputHTMLAttributes<HTMLInputElement>
-  & React.ClassAttributes<HTMLInputElement>;
+  & ClassAttributes<HTMLInputElement>;
 
 export default function InputField({
   placeholder,
@@ -42,13 +42,18 @@ export default function InputField({
   disabledIconButton = false,
   onClickIconButton,
   ref,
+  className,
   ...nativeProps
 }: InputFieldProps) {
-  const inputFieldSize = `kc-inputfield--${_size}`;
-  const inputFieldDisable = disabled ? 'kc-inputfield--disabled' : '';
-  const inputFieldError = !disabled && isError ? 'kc-inputfield--error' : '';
-  const inputFieldWidth = `kc-inputfield--${width}`;
-  const inputFieldVariant = [inputFieldSize, inputFieldDisable, inputFieldError, inputFieldWidth].join(' ');
+  const getClassName = () => {
+    const inputFieldSize = `kc-inputfield--${_size}`;
+    const inputFieldDisable = disabled ? 'kc-inputfield--disabled' : '';
+    const inputFieldError = !disabled && isError ? 'kc-inputfield--error' : '';
+    const inputFieldWidth = `kc-inputfield--${width}`;
+    const inputFieldVariant = [inputFieldSize, inputFieldDisable, inputFieldError, inputFieldWidth].join(' ');
+    const result = className ? `kc-inputfield ${inputFieldVariant} ${className}` : `kc-inputfield ${inputFieldVariant}`;
+    return result.replace(/\s{2,}/, ' ').trim();
+  };
 
   const renderSuffix = () => (
     suffix ? (
@@ -74,22 +79,18 @@ export default function InputField({
   };
 
   return (
-    <div className={`kc-inputfield ${inputFieldVariant}`}>
-      {
-        title ? (
-          <div className="kc-inputfield__title">
-            <span className="kc-caption">{title}</span>
-          </div>
-        ) : null
-      }
+    <div className={getClassName()}>
+      {title ? (
+        <div className="kc-inputfield__title">
+          <span className="kc-caption">{title}</span>
+        </div>
+      ) : null}
       <div className="kc-inputfield__box">
-        {
-          _prefix ? (
-            <div className="kc-inputfield__prefix">
-              <span className="kc-body2">{_prefix}</span>
-            </div>
-          ) : null
-        }
+        {_prefix ? (
+          <div className="kc-inputfield__prefix">
+            <span className="kc-body2">{_prefix}</span>
+          </div>
+        ) : null}
         <input
           ref={ref}
           placeholder={placeholder}
@@ -100,13 +101,11 @@ export default function InputField({
         {renderSuffix()}
         {renderIconButton()}
       </div>
-      {
-        subtitle ? (
-          <div className="kc-inputfield__subtitle">
-            <span className="kc-overline">{subtitle}</span>
-          </div>
-        ) : null
-      }
+      {subtitle ? (
+        <div className="kc-inputfield__subtitle">
+          <span className="kc-overline">{subtitle}</span>
+        </div>
+      ) : null}
     </div>
   );
 }

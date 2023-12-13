@@ -7,7 +7,7 @@ type ButtonWithIconProps = {
 } | {
   withIcon?: false;
   iconName?: string;
-}
+};
 
 export type ButtonProps = {
   label: string,
@@ -15,7 +15,7 @@ export type ButtonProps = {
   size?: 'short' | 'long' | 'fluid' | 'fit-content';
   disabled?: boolean;
   loading?: boolean;
-} & ButtonWithIconProps & ButtonHTMLAttributes<HTMLButtonElement>
+} & ButtonWithIconProps & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export default function Button({
   label,
@@ -26,34 +26,35 @@ export default function Button({
   withIcon,
   iconName,
   type,
+  className,
   ...nativeProps
 }: ButtonProps) {
-  const btnModel = `kc-button--${model}`;
-  const btnSize = `kc-button--${size}`;
+  const getClassName = () => {
+    const btnModel = `kc-button--${model}`;
+    const btnSize = `kc-button--${size}`;
+    const result = className ? `kc-button ${btnSize} ${btnModel} ${className}` : `kc-button ${btnSize} ${btnModel}`;
+    return result.replace(/\s{2,}/, ' ').trim();
+  };
 
   return (
     <button
       type={type || 'button'}
-      className={`kc-button ${btnSize} ${btnModel}`}
+      className={getClassName()}
       disabled={disabled || loading}
       {...nativeProps}
     >
       <div className="kc-button__content">
-        {
-          loading ? <span className="spinner-border" />
-            : (
-              <>
-                {
-                  withIcon ? (
-                    <div className="kc-button__icon">
-                      <i className={iconName} />
-                    </div>
-                  ) : null
-                }
-                <span className="kc-button-label">{label}</span>
-              </>
-            )
-        }
+        {loading ? <span className="spinner-border" />
+          : (
+            <>
+              {withIcon ? (
+                <div className="kc-button__icon">
+                  <i className={iconName} />
+                </div>
+              ) : null}
+              <span className="kc-button-label">{label}</span>
+            </>
+          )}
       </div>
     </button>
   );

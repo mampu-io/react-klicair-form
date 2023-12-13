@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 
-export interface TagProps {
+export interface TagProps extends HTMLAttributes<HTMLDivElement> {
   label: string;
   disabled?: boolean;
   onRemove: () => void;
 }
 
-export default function Tag({ label, disabled, onRemove }: TagProps) {
+export default function Tag({
+  label,
+  disabled,
+  onRemove,
+  className,
+  ...nativeProps
+}: TagProps) {
+  const getClassName = () => {
+    const tagDisabled = disabled ? 'kc-tag--disabled' : '';
+    const result = className ? `kc-tag ${tagDisabled} ${className}` : `kc-tag ${tagDisabled}`;
+    return result.replace(/\s{2,}/, ' ').trim();
+  };
+
   const onClickRemoveButtonHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
     onRemove();
   };
 
   return (
-    <div className={`kc-tag ${disabled ? 'kc-tag--disabled' : ''}`}>
-      <div className="kc-tag__label" title={label}>
-        {label}
-      </div>
+    <div className={getClassName()} {...nativeProps}>
+      <div className="kc-tag__label" title={label}>{label}</div>
       <button
         type="button"
         className="kc-tag__remove-btn"

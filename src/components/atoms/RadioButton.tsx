@@ -12,13 +12,19 @@ export default function RadioButton({
   checked,
   description,
   disabled,
+  className,
   ...nativeProps
 }: RadioButtonProps) {
+  const getClassName = () => {
+    const result = className ? `kc-radio-button ${className}` : 'kc-radio-button';
+    return result.replace(/\s{2,}/, ' ').trim();
+  };
+
   const radioButtonDisabled = disabled || false;
   const radioButtonChecked = checked || false;
 
   return (
-    <div className="kc-radio-button">
+    <div className={getClassName()}>
       <input
         type="radio"
         checked={radioButtonChecked}

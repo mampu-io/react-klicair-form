@@ -8,7 +8,7 @@ export type TextAreaProps = {
   disabled?: boolean;
   isError?: boolean;
   resizeable?: boolean;
-} & TextareaHTMLAttributes<HTMLTextAreaElement>
+} & TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 export default function TextArea({
   placeholder,
@@ -18,23 +18,26 @@ export default function TextArea({
   disabled,
   isError,
   resizeable,
+  className,
   ...nativeProps
 }: TextAreaProps) {
-  const textAreaDisable = disabled ? 'kc-textarea--disabled' : '';
-  const textAreaError = !disabled && isError ? 'kc-textarea--error' : '';
-  const textAreaWidth = `kc-textarea--${width}`;
-  const textAreaResizeable = resizeable ? 'kc-textarea--resizeable' : '';
-  const textAreaVariant = [textAreaResizeable, textAreaDisable, textAreaError, textAreaWidth].join(' ');
+  const getClassName = () => {
+    const textAreaDisable = disabled ? 'kc-textarea--disabled' : '';
+    const textAreaError = !disabled && isError ? 'kc-textarea--error' : '';
+    const textAreaWidth = `kc-textarea--${width}`;
+    const textAreaResizeable = resizeable ? 'kc-textarea--resizeable' : '';
+    const textAreaVariant = [textAreaResizeable, textAreaDisable, textAreaError, textAreaWidth].join(' ');
+    const result = className ? `kc-textarea ${textAreaVariant} ${className}` : `kc-textarea ${textAreaVariant}`;
+    return result.replace(/\s{2,}/, ' ').trim();
+  };
 
   return (
-    <div className={`kc-textarea ${textAreaVariant}`}>
-      {
-        title ? (
-          <div className="kc-textarea__title">
-            <span className="kc-caption">{title}</span>
-          </div>
-        ) : null
-      }
+    <div className={getClassName()}>
+      {title ? (
+        <div className="kc-textarea__title">
+          <span className="kc-caption">{title}</span>
+        </div>
+      ) : null}
       <div className="kc-textarea__box">
         <textarea
           placeholder={placeholder}
@@ -42,13 +45,11 @@ export default function TextArea({
           {...nativeProps}
         />
       </div>
-      {
-        subtitle ? (
-          <div className="kc-textarea__subtitle">
-            <span className="kc-overline">{subtitle}</span>
-          </div>
-        ) : null
-      }
+      {subtitle ? (
+        <div className="kc-textarea__subtitle">
+          <span className="kc-overline">{subtitle}</span>
+        </div>
+      ) : null}
     </div>
   );
 }

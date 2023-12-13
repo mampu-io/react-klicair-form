@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { ButtonHTMLAttributes, useEffect, useState } from 'react';
 import RoundedButton, { RoundedButtonProps } from './RoundedButton';
 
 export type CopyButtonProps = {
   valueToCopy: string;
-} & Pick<RoundedButtonProps, 'size' | 'disabled'>;
+} & Pick<RoundedButtonProps, 'size' | 'disabled'>
+& ButtonHTMLAttributes<HTMLButtonElement>;
 
 export default function CopyButton({
   valueToCopy,
   size,
   disabled = false,
+  ...nativeProps
 }: CopyButtonProps) {
   const DEFAULT_SIZE = 'medium';
   const [tooltipLabel, setTooltipLabel] = useState('Copy');
@@ -34,6 +36,7 @@ export default function CopyButton({
       disabled={disabled}
       tooltipLabel={disabled ? '' : tooltipLabel}
       onClick={() => copyToClipboard(valueToCopy)}
+      {...nativeProps}
     />
   );
 }

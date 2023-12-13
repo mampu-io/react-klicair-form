@@ -13,16 +13,22 @@ export default function Checkbox({
   disabled,
   indeterminate,
   checked,
+  className,
   ...nativeProps
 }: CheckboxProps) {
-  const checkboxIndeterminate = indeterminate ? 'kc-checkbox--indeterminate' : '';
-  const checkboxdisabled = disabled ? 'kc-checkbox--disabled' : '';
-  const checkboxVariant = [checkboxIndeterminate, checkboxdisabled].join(' ');
+  const getClassName = () => {
+    const checkboxIndeterminate = indeterminate ? 'kc-checkbox--indeterminate' : '';
+    const checkboxdisabled = disabled ? 'kc-checkbox--disabled' : '';
+    const checkboxVariant = [checkboxIndeterminate, checkboxdisabled].join(' ');
+    const result = className ? `kc-checkbox ${checkboxVariant} ${className}` : `kc-checkbox ${checkboxVariant}`;
+    return result.replace(/\s{2,}/, ' ').trim();
+  };
+
   const isChecked = checked || false;
   const isIndeterminate = indeterminate || false;
 
   return (
-    <div className={`kc-checkbox ${checkboxVariant}`}>
+    <div className={getClassName()}>
       <input
         type="checkbox"
         checked={isChecked}

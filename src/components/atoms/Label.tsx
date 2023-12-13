@@ -3,18 +3,23 @@ import React, { LabelHTMLAttributes } from 'react';
 export type LabelProps = {
   value: string;
   important?: boolean;
-} & LabelHTMLAttributes<HTMLLabelElement>
+} & LabelHTMLAttributes<HTMLLabelElement>;
 
 export default function Label({
   value,
   important,
   htmlFor,
+  className,
   ...nativeProps
 }: LabelProps) {
-  const labelImportant = important ? ' kc-typo-bold' : '';
+  const getClassName = () => {
+    const labelImportant = important ? ' kc-typo-bold' : '';
+    const result = className ? `kc-body1 ${labelImportant} ${className}` : `kc-body1 ${labelImportant}`;
+    return result.replace(/\s{2,}/, ' ').trim();
+  };
 
   return (
-    <label className={`kc-body1${labelImportant}`} htmlFor={htmlFor} {...nativeProps}>
+    <label className={getClassName()} htmlFor={htmlFor} {...nativeProps}>
       {value}
     </label>
   );
