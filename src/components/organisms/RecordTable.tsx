@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import RecordItem, { RecordItemProps } from '../molecules/RecordItem';
 
 type RecordData = Omit<RecordItemProps, 'direction'>
 
-export interface RecordTableProps {
+export interface RecordTableProps extends HTMLAttributes<HTMLDivElement> {
   records: RecordData[];
   direction?: 'horizontal' | 'vertical';
 }
@@ -11,9 +11,16 @@ export interface RecordTableProps {
 export default function RecordTable({
   records,
   direction,
+  className,
+  ...nativeProps
 }: RecordTableProps) {
+  const getClassName = () => {
+    const result = className ? `kc-record-table ${className}` : 'kc-record-table';
+    return result.replace(/\s{2,}/, ' ').trim();
+  };
+
   return direction === 'horizontal' ? (
-    <table className="kc-record-table">
+    <table className={getClassName()} {...nativeProps}>
       <tbody>
         {records.map(({ label, value, children }, i) => (
           <tr key={`record-item-${i + 1}`}>
@@ -28,7 +35,7 @@ export default function RecordTable({
       </tbody>
     </table>
   ) : (
-    <div className="kc-record-table">
+    <div className={getClassName()} {...nativeProps}>
       {records.map(({ label, value, children }, i) => (
         <RecordItem
           key={`record-item-${i + 1}`}

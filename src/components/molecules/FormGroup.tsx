@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 import Label from '../atoms/Label';
 
 export type FormGroupProps = {
@@ -8,7 +8,7 @@ export type FormGroupProps = {
   isRequired?: boolean;
   disabled?: boolean;
   children: React.ReactNode;
-}
+} & HTMLAttributes<HTMLDivElement>;
 
 export default function FormGroup({
   label,
@@ -17,14 +17,20 @@ export default function FormGroup({
   isRequired,
   disabled,
   children,
+  className,
+  ...nativeProps
 }: FormGroupProps) {
-  const formGroupDirection = `kc-form-group--${direction}`;
-  const formGroupWithNote = note ? 'kc-form-group--with-note' : '';
-  const formGroupDisabled = disabled ? 'kc-form-group--disabled' : '';
-  const formGroupVariant = [formGroupDirection, formGroupWithNote, formGroupDisabled].join(' ');
+  const getClassName = () => {
+    const formGroupDirection = `kc-form-group--${direction}`;
+    const formGroupWithNote = note ? 'kc-form-group--with-note' : '';
+    const formGroupDisabled = disabled ? 'kc-form-group--disabled' : '';
+    const formGroupVariant = [formGroupDirection, formGroupWithNote, formGroupDisabled].join(' ');
+    const result = className ? `kc-form-group ${formGroupVariant} ${className}` : `kc-form-group ${formGroupVariant}`;
+    return result.replace(/\s{2,}/, ' ').trim();
+  };
 
   return (
-    <div className={`kc-form-group ${formGroupVariant}`.trim()}>
+    <div className={getClassName()} {...nativeProps}>
       <div className="kc-form-group__identity">
         <div className="kc-form-group__label">
           <Label value={label} />

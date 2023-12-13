@@ -1,9 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {
+  HTMLAttributes,
+  useState,
+  useEffect,
+  useRef,
+} from 'react';
 import { DropdownItem } from '../atoms/Dropdown';
 import Tag from '../atoms/Tag';
 import { useActionOnClickOutside } from '../../common/custom-hooks';
 
-export interface DropdownTagProps<T extends string> {
+export interface DropdownTagProps<T extends string> extends HTMLAttributes<HTMLDivElement> {
   values: DropdownItem<T>[];
   onChangeHandler: (value: T[]) => void;
   currentValues: T[];
@@ -17,15 +22,21 @@ export default function DropdownTag<T extends string>({
   onChangeHandler,
   defaultLabel,
   disabled,
+  className,
+  ...nativeProps
 }: DropdownTagProps<T>) {
   const DEFAULT_DROPDOWN_LABEL = 'Pilih...';
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [availableDropdownItems, setAvailableDropdownItems] = useState<DropdownItem<T>[]>([]);
   const [selectedDropdownItems, setSelectedDropdownItems] = useState<DropdownItem<T>[]>([]);
 
-  const dropdownClose = isDropdownOpen ? '' : 'kc-dropdown-tag--close';
-  const dropdownDisabled = disabled ? 'kc-dropdown-tag--disabled' : '';
-  const dropdownVariant = [dropdownClose, dropdownDisabled].join(' ');
+  const getClassName = () => {
+    const dropdownTagClose = isDropdownOpen ? '' : 'kc-dropdown-tag--close';
+    const dropdownTagDisabled = disabled ? 'kc-dropdown-tag--disabled' : '';
+    const dropdownTagVariant = [dropdownTagClose, dropdownTagDisabled].join(' ');
+    const result = className ? `kc-dropdown-tag ${dropdownTagVariant} ${className}` : `kc-dropdown-tag ${dropdownTagVariant}`;
+    return result.replace(/\s{2,}/, ' ').trim();
+  };
 
   const dropdownRef = useRef(null);
   useActionOnClickOutside(dropdownRef, () => setIsDropdownOpen(false));
@@ -100,7 +111,7 @@ export default function DropdownTag<T extends string>({
   );
 
   return (
-    <div ref={dropdownRef} className={`kc-dropdown-tag ${dropdownVariant}`}>
+    <div ref={dropdownRef} className={getClassName()} {...nativeProps}>
       <div
         className="kc-dropdown-button kc-button-label"
         role="button"
@@ -112,27 +123,23 @@ export default function DropdownTag<T extends string>({
       >
         {renderDropdownButtonContent()}
       </div>
-      {
-        availableDropdownItems.length > 0 ? (
-          <ul className="kc-dropdown__items">
-            {
-              availableDropdownItems.map((availableDropdownItem) => (
-                <li className="kc-dropdown__item" key={availableDropdownItem.id}>
-                  <button type="button" onClick={() => onDropdownItemClick(availableDropdownItem)}>
-                    <span className="kc-body2">{availableDropdownItem.label}</span>
-                  </button>
-                </li>
-              ))
-            }
-          </ul>
-        ) : (
-          <ul className="kc-dropdown__items">
-            <li className="kc-dropdown__item--empty">
-              <span className="kc-body2">Tidak ada pilihan tersedia</span>
+      {availableDropdownItems.length > 0 ? (
+        <ul className="kc-dropdown__items">
+          {availableDropdownItems.map((availableDropdownItem) => (
+            <li className="kc-dropdown__item" key={availableDropdownItem.id}>
+              <button type="button" onClick={() => onDropdownItemClick(availableDropdownItem)}>
+                <span className="kc-body2">{availableDropdownItem.label}</span>
+              </button>
             </li>
-          </ul>
-        )
-      }
+          ))}
+        </ul>
+      ) : (
+        <ul className="kc-dropdown__items">
+          <li className="kc-dropdown__item--empty">
+            <span className="kc-body2">Tidak ada pilihan tersedia</span>
+          </li>
+        </ul>
+      )}
     </div>
   );
 }

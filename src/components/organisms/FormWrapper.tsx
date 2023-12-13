@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FormHTMLAttributes } from 'react';
 import Button from '../atoms/Button';
 
 export type FormWrapperProps = {
@@ -7,7 +7,7 @@ export type FormWrapperProps = {
   submitLabel?: string;
   isSubmitButtonDisabled?: boolean;
   isSubmitButtonLoading?: boolean;
-}
+} & FormHTMLAttributes<HTMLFormElement>;
 
 export default function FormWrapper({
   onSubmitHandler,
@@ -15,14 +15,22 @@ export default function FormWrapper({
   submitLabel,
   isSubmitButtonDisabled,
   isSubmitButtonLoading,
+  className,
+  ...nativeProps
 }: FormWrapperProps) {
+  const getClassName = () => {
+    const result = className ? `kc-form-wrapper ${className}` : 'kc-form-wrapper';
+    return result.replace(/\s{2,}/, ' ').trim();
+  };
+
   return (
     <form
-      className="kc-form-wrapper"
+      className={getClassName()}
       onSubmit={(e) => {
         e.preventDefault();
         onSubmitHandler();
       }}
+      {...nativeProps}
     >
       {children}
       <div className="kc-form-wrapper__submit-btn">
