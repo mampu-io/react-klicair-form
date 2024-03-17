@@ -26,6 +26,7 @@ type DropdownGenericProps<T extends string> = {
   width?: 'fixed' | 'fluid';
   disabled?: boolean;
   position?: 'top' | 'bottom';
+  isSearchActive?: boolean;
 };
 
 export type DropdownProps<T extends string> = DropdownGenericProps<T>
@@ -40,12 +41,14 @@ export default function Dropdown<T extends string>({
   width,
   disabled,
   position,
+  isSearchActive,
   className,
   ...nativeProps
 }: DropdownProps<T>) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [dropdownCurrentValue, setDropdownCurrentValue] = useState<DropdownItem<T>>();
   const [dropdownLabel, setDropdownLabel] = useState(defaultLabel);
+  const [searchKeyword, setSearchKeyword] = useState('');
 
   const getClassName = () => {
     const dropdownWidth = `kc-dropdown--${width}`;
@@ -64,6 +67,7 @@ export default function Dropdown<T extends string>({
     if (!currentValue) {
       setDropdownLabel(defaultLabel);
     }
+
     const target = values.find((each) => each.value === currentValue);
     if (!target) return;
     setDropdownCurrentValue(target);
@@ -78,6 +82,7 @@ export default function Dropdown<T extends string>({
     onChangeHandler(dropdownItem.value);
     setIsDropdownOpen(false);
     setDropdownCurrentValue(dropdownItem);
+    setSearchKeyword(dropdownItem.label);
   };
 
   const renderDropdownButtonIcon = () => {
@@ -94,14 +99,29 @@ export default function Dropdown<T extends string>({
 
   const renderDropdownButtonContent = () => (
     <div className="kc-dropdown-button__content">
-      <span className="kc-button-label">
-        {dropdownLabel}
-      </span>
+      {isSearchActive ? (
+        <input
+          type="text"
+          placeholder={dropdownLabel}
+          disabled={disabled}
+          value={searchKeyword}
+          onChange={(e) => setSearchKeyword(e.target.value)}
+          onClick={(e) => { e.stopPropagation(); setIsDropdownOpen(true); }}
+        />
+      ) : (
+        <span className="kc-button-label">
+          {dropdownLabel}
+        </span>
+      )}
       <div className="kc-dropdown-button__icon">
         {renderDropdownButtonIcon()}
       </div>
     </div>
   );
+
+  const filteredValues = searchKeyword !== ''
+    ? values.filter((value) => value.label.toLowerCase().includes(searchKeyword.toLowerCase()))
+    : values;
 
   return (
     <div ref={dropdownRef} className={getClassName()} {...nativeProps}>
@@ -113,9 +133,9 @@ export default function Dropdown<T extends string>({
       >
         {renderDropdownButtonContent()}
       </button>
-      {values.length > 0 ? (
+      {filteredValues.length > 0 ? (
         <ul className="kc-dropdown__items">
-          {values.map((value) => (
+          {filteredValues.map((value) => (
             <li className="kc-dropdown__item" key={value.id}>
               <button type="button" onClick={() => onDropdownItemClick(value)}>
                 <span className="kc-body2">{value.label}</span>
@@ -132,4 +152,5 @@ Dropdown.defaultProps = {
   width: 'fixed',
   disabled: false,
   position: 'bottom',
+  isSearchActive: false,
 };

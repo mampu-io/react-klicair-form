@@ -42,6 +42,7 @@ const GenericProps = {
   onChangeHandler: (value: string) => console.log(`dropdown value changed: ${value}`),
   width: 'fixed',
   disabled: false,
+  isSearchActive: false,
 };
 
 export const WithCurrentValue = Template.bind({});
@@ -60,4 +61,10 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   ...WithCurrentValue.args,
   disabled: true,
+};
+
+export const WithSearchMechanism = Template.bind({});
+WithSearchMechanism.args = {
+  ...WithCurrentValue.args,
+  isSearchActive: true,
 };

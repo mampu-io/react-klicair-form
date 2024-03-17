@@ -27,6 +27,12 @@
         text-overflow: ellipsis;
       }
 
+      input {
+        border: none;
+        outline: none;
+        width: 100%;
+      }
+
       .kc-dropdown-button__icon i {
         margin-left: 20px;
         color: $neutral9;
