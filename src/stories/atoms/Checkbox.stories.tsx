@@ -25,6 +25,7 @@ const Template: Story<CheckboxProps> = (args) => (
 );
 
 const defaultProps: CheckboxProps = {
+  id: 'example',
   label: 'Example',
   disabled: false,
   checked: false,

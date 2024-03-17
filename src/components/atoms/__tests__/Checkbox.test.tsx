@@ -15,7 +15,7 @@ describe('Checkbox component', () => {
 
   const CHECKBOX_LABEL = 'Example';
   const onToggleCheckbox = jest.fn();
-  const defaultProps = { label: CHECKBOX_LABEL, onChange: onToggleCheckbox };
+  const defaultProps = { id: 'test', label: CHECKBOX_LABEL, onChange: onToggleCheckbox };
   afterEach(cleanup);
 
   test(`With default props, should render the Checkbox with non-disabled and

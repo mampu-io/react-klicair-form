@@ -9,6 +9,7 @@ export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export default function Checkbox({
+  id,
   label,
   disabled,
   indeterminate,
@@ -30,6 +31,7 @@ export default function Checkbox({
   return (
     <div className={getClassName()}>
       <input
+        id={id}
         type="checkbox"
         checked={isChecked}
         disabled={disabled}
@@ -38,7 +40,7 @@ export default function Checkbox({
         }}
         {...nativeProps}
       />
-      <label htmlFor="vehicle1">{label}</label>
+      <label htmlFor={id}>{label}</label>
     </div>
   );
 }
