@@ -13,6 +13,7 @@ export default {
 const Template: Story<RadioButtonProps> = (args) => <RadioButton {...args} />;
 
 const defaultProps: RadioButtonProps = {
+  id: 'test',
   label: 'PAID BY CUSTOMER',
   checked: false,
   description: 'Biaya transaksi ditanggung oleh nasabah',

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import React, {
   HTMLAttributes,
   useState,
@@ -82,7 +83,7 @@ export default function Dropdown<T extends string>({
     onChangeHandler(dropdownItem.value);
     setIsDropdownOpen(false);
     setDropdownCurrentValue(dropdownItem);
-    setSearchKeyword(dropdownItem.label);
+    isSearchActive && setSearchKeyword(dropdownItem.label);
   };
 
   const renderDropdownButtonIcon = () => {
