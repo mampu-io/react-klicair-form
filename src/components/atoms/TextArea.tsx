@@ -12,12 +12,12 @@ export type TextAreaProps = {
 
 export default function TextArea({
   placeholder,
-  width,
+  width = 'fixed',
   title,
   subtitle,
-  disabled,
-  isError,
-  resizeable,
+  disabled = false,
+  isError = false,
+  resizeable = true,
   className,
   ...nativeProps
 }: TextAreaProps) {
@@ -53,12 +53,3 @@ export default function TextArea({
     </div>
   );
 }
-
-TextArea.defaultProps = {
-  width: 'fixed',
-  title: '',
-  subtitle: '',
-  disabled: false,
-  isError: false,
-  resizeable: true,
-};

@@ -10,7 +10,7 @@ export interface RecordTableProps extends HTMLAttributes<HTMLDivElement> {
 
 export default function RecordTable({
   records,
-  direction,
+  direction = 'horizontal',
   className,
   ...nativeProps
 }: RecordTableProps) {
@@ -49,7 +49,3 @@ export default function RecordTable({
     </div>
   );
 }
-
-RecordTable.defaultProps = {
-  direction: 'horizontal',
-};

@@ -14,7 +14,7 @@ export default function InputTag({
   values,
   onAddValue,
   onRemoveValue,
-  disabled,
+  disabled = false,
   width,
   dataTest,
   className,
@@ -59,8 +59,3 @@ export default function InputTag({
     </div>
   );
 }
-
-InputTag.defaultProps = {
-  disabled: false,
-  dataTest: '',
-};

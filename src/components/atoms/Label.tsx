@@ -7,7 +7,7 @@ export type LabelProps = {
 
 export default function Label({
   value,
-  important,
+  important = true,
   htmlFor,
   className,
   ...nativeProps
@@ -24,7 +24,3 @@ export default function Label({
     </label>
   );
 }
-
-Label.defaultProps = {
-  important: true,
-};

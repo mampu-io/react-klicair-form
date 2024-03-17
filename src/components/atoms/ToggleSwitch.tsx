@@ -8,8 +8,8 @@ export interface ToggleSwitchProps extends InputHTMLAttributes<HTMLInputElement>
 }
 
 export default function ToggleSwitch({
-  disabled,
-  switchOn,
+  disabled = false,
+  switchOn = false,
   onChangeHandler,
   className,
   ...nativeProps
@@ -20,15 +20,14 @@ export default function ToggleSwitch({
     return result.replace(/\s{2,}/, ' ').trim();
   };
 
-  const isSwitchOn = switchOn || false;
-  const labelOffDisabled = isSwitchOn ? 'kc-toggle-switch__off--disabled' : '';
-  const labelOnDisabled = !isSwitchOn ? 'kc-toggle-switch__on--disabled' : '';
+  const labelOffDisabled = switchOn ? 'kc-toggle-switch__off--disabled' : '';
+  const labelOnDisabled = !switchOn ? 'kc-toggle-switch__on--disabled' : '';
 
   return (
     <label className={getClassName()}>
       <input
         type="checkbox"
-        checked={isSwitchOn}
+        checked={switchOn}
         onChange={onChangeHandler}
         disabled={disabled}
         {...nativeProps}
@@ -39,9 +38,3 @@ export default function ToggleSwitch({
     </label>
   );
 }
-
-ToggleSwitch.defaultProps = {
-  disabled: false,
-  switchOn: false,
-  onChangeHandler: () => {},
-};

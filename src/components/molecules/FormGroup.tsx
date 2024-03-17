@@ -12,10 +12,10 @@ export type FormGroupProps = {
 
 export default function FormGroup({
   label,
-  direction,
+  direction = 'horizontal',
   note,
-  isRequired,
-  disabled,
+  isRequired = false,
+  disabled = false,
   children,
   className,
   ...nativeProps
@@ -42,10 +42,3 @@ export default function FormGroup({
     </div>
   );
 }
-
-FormGroup.defaultProps = {
-  direction: 'horizontal',
-  note: '',
-  isRequired: false,
-  disabled: false,
-};

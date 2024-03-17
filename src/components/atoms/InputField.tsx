@@ -30,14 +30,14 @@ export type InputFieldProps = InputFieldGeneralProps
 export default function InputField({
   placeholder,
   type,
-  width,
+  width = 'fixed',
   _prefix,
   suffix,
-  _size,
+  _size = 'medium',
   title,
   subtitle,
-  disabled,
-  isError,
+  disabled = false,
+  isError = false,
   iconButtonName,
   disabledIconButton = false,
   onClickIconButton,
@@ -109,14 +109,3 @@ export default function InputField({
     </div>
   );
 }
-
-InputField.defaultProps = {
-  width: 'fixed',
-  _prefix: '',
-  suffix: '',
-  _size: 'medium',
-  title: '',
-  subtitle: '',
-  disabled: false,
-  isError: false,
-};

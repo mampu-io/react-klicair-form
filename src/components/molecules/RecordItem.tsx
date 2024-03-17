@@ -11,7 +11,7 @@ export interface RecordItemProps extends HTMLAttributes<HTMLDivElement> {
 export default function RecordItem({
   label,
   value,
-  direction,
+  direction = 'horizontal',
   children,
   className,
   ...nativeProps
@@ -26,14 +26,8 @@ export default function RecordItem({
     <div className={getClassName()} {...nativeProps}>
       <Label value={label} important={false} />
       <div className="kc-record-item-new__value">
-        {children || <Label value={value || ''} />}
+        {children || (value ? <Label value={value} /> : null)}
       </div>
     </div>
   );
 }
-
-RecordItem.defaultProps = {
-  value: '',
-  direction: 'horizontal',
-  children: null,
-};

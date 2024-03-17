@@ -8,7 +8,7 @@ export interface TagProps extends HTMLAttributes<HTMLDivElement> {
 
 export default function Tag({
   label,
-  disabled,
+  disabled = false,
   onRemove,
   className,
   ...nativeProps
@@ -39,7 +39,3 @@ export default function Tag({
     </div>
   );
 }
-
-Tag.defaultProps = {
-  disabled: false,
-};

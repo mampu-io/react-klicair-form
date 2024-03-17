@@ -19,10 +19,10 @@ export type ButtonProps = {
 
 export default function Button({
   label,
-  model,
-  size,
-  disabled,
-  loading,
+  model = 'primary',
+  size = 'short',
+  disabled = false,
+  loading = false,
   withIcon,
   iconName,
   type,
@@ -59,10 +59,3 @@ export default function Button({
     </button>
   );
 }
-
-Button.defaultProps = {
-  model: 'primary',
-  size: 'short',
-  disabled: false,
-  loading: false,
-};

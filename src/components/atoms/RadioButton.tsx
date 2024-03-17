@@ -9,9 +9,9 @@ export interface RadioButtonProps extends InputHTMLAttributes<HTMLInputElement> 
 
 export default function RadioButton({
   label,
-  checked,
+  checked = false,
   description,
-  disabled,
+  disabled = false,
   className,
   ...nativeProps
 }: RadioButtonProps) {
@@ -20,31 +20,22 @@ export default function RadioButton({
     return result.replace(/\s{2,}/, ' ').trim();
   };
 
-  const radioButtonDisabled = disabled || false;
-  const radioButtonChecked = checked || false;
-
   return (
     <div className={getClassName()}>
       <input
         type="radio"
-        checked={radioButtonChecked}
-        disabled={radioButtonDisabled}
+        checked={checked}
+        disabled={disabled}
         {...nativeProps}
       />
-      <div className={`kc-radio-button__text ${radioButtonDisabled ? 'kc-radio-button__text--disabled' : ''}`.trim()}>
+      <div className={`kc-radio-button__text ${disabled ? 'kc-radio-button__text--disabled' : ''}`.trim()}>
         <span className="kc-radio-button__label kc-body1 kc-typo-bold">
           {label}
         </span>
-        {description !== ''
-          ? (<span className="kc-radio-button__desc kc-body2">{description}</span>)
-          : null}
+        {description ? (
+          <span className="kc-radio-button__desc kc-body2">{description}</span>
+        ) : null}
       </div>
     </div>
   );
 }
-
-RadioButton.defaultProps = {
-  checked: false,
-  description: '',
-  disabled: false,
-};

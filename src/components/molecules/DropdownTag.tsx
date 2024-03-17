@@ -21,7 +21,7 @@ export default function DropdownTag<T extends string>({
   currentValues,
   onChangeHandler,
   defaultLabel,
-  disabled,
+  disabled = false,
   className,
   ...nativeProps
 }: DropdownTagProps<T>) {
@@ -143,8 +143,3 @@ export default function DropdownTag<T extends string>({
     </div>
   );
 }
-
-DropdownTag.defaultProps = {
-  defaultLabel: '',
-  disabled: false,
-};

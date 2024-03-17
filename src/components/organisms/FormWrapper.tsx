@@ -12,9 +12,9 @@ export type FormWrapperProps = {
 export default function FormWrapper({
   onSubmitHandler,
   children,
-  submitLabel,
-  isSubmitButtonDisabled,
-  isSubmitButtonLoading,
+  submitLabel = 'Submit',
+  isSubmitButtonDisabled = false,
+  isSubmitButtonLoading = false,
   className,
   ...nativeProps
 }: FormWrapperProps) {
@@ -35,7 +35,7 @@ export default function FormWrapper({
       {children}
       <div className="kc-form-wrapper__submit-btn">
         <Button
-          label={String(submitLabel)}
+          label={submitLabel}
           type="submit"
           disabled={isSubmitButtonDisabled}
           loading={isSubmitButtonLoading}
@@ -44,9 +44,3 @@ export default function FormWrapper({
     </form>
   );
 }
-
-FormWrapper.defaultProps = {
-  submitLabel: 'Submit',
-  isSubmitButtonDisabled: false,
-  isSubmitButtonLoading: false,
-};

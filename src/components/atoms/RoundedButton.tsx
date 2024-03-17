@@ -12,11 +12,11 @@ export type RoundedButtonProps = {
 
 export default function RoundedButton({
   iconName,
-  model,
-  size,
-  disabled,
+  model = 'primary',
+  size = 'medium',
+  disabled = false,
   tooltipLabel,
-  tooltipAlign,
+  tooltipAlign = 'left',
   title,
   className,
   ...nativeProps
@@ -46,12 +46,3 @@ export default function RoundedButton({
     </div>
   );
 }
-
-RoundedButton.defaultProps = {
-  model: 'primary',
-  size: 'medium',
-  disabled: false,
-  tooltipLabel: '',
-  tooltipAlign: 'left',
-  title: '',
-};

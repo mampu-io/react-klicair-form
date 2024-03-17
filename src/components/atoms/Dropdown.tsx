@@ -38,10 +38,10 @@ export default function Dropdown<T extends string>({
   currentValue,
   onChangeHandler,
   defaultLabel,
-  width,
-  disabled,
-  position,
-  isSearchActive,
+  width = 'fixed',
+  disabled = false,
+  position = 'bottom',
+  isSearchActive = false,
   className,
   ...nativeProps
 }: DropdownProps<T>) {
@@ -147,10 +147,3 @@ export default function Dropdown<T extends string>({
     </div>
   );
 }
-
-Dropdown.defaultProps = {
-  width: 'fixed',
-  disabled: false,
-  position: 'bottom',
-  isSearchActive: false,
-};
