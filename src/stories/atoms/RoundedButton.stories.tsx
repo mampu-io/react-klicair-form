@@ -19,7 +19,6 @@ Primary.args = {
   size: 'medium',
   disabled: false,
   tooltipLabel: '',
-  tooltipAlign: 'left',
   title: '',
 };
 
