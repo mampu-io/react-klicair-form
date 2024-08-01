@@ -76,8 +76,9 @@ Ada beberapa kebutuhan yang **harus dipenuhi** untuk menggunakan library ini, ya
 #### Rollup for Bundle
 - @rollup/plugin-commonjs
 - @rollup/plugin-node-resolve
+- @rollup/plugin-typescript
 - rollup
+- rollup-plugin-dts
 - rollup-plugin-peer-deps-external
-- rollup-plugin-postcss
+- rollup-plugin-scss
 - rollup-plugin-terser
-- rollup-plugin-typescript2
